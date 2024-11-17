@@ -30,6 +30,11 @@ public class BasePage {
         return element;
     }
 
+    public WebElement waitElementToBeVisible(WebElement element, long seconds) {
+        new WebDriverWait(driver, Duration.ofSeconds(seconds)).until(ExpectedConditions.visibilityOf(element));
+        return element;
+    }
+
     public WebElement waitElementToBeClickable(WebElement element) {
         new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(getProp("explicit_wait"))))
                 .until(ExpectedConditions.elementToBeClickable(element));

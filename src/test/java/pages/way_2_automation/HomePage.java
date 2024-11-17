@@ -7,8 +7,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.base.BasePage;
 
-import java.util.concurrent.TimeUnit;
-
 public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver, Actions actions) {
@@ -56,8 +54,10 @@ public class HomePage extends BasePage {
     private WebElement nextSlideButton;
     @FindBy(css = ".pp-slider-arrow[aria-label='Previous slide']")
     private WebElement previousSlideButton;
-    @FindBy(css = "div[aria-label='2 / 16']:not(.swiper-slide-duplicate)")
-    private WebElement slideWithFirstIndex;
+    @FindBy(css = ".swiper-slide-active[aria-label='1 / 16']")
+    private WebElement activeSlide1;
+    @FindBy(css = ".swiper-slide-active[aria-label='16 / 16']")
+    private WebElement activeSlide16;
 
 
 
@@ -85,11 +85,13 @@ public class HomePage extends BasePage {
     public HomePage popularCoursesBlockNavigation() {
         scrollToElement(popularCoursesBlock);
         waitElementToBeVisible(popularCoursesTitle);
-        waitElementToBeVisible(nextSlideButton);
-        waitElementToBeVisible(slideWithFirstIndex);
-//        clickElement(nextSlideButton);
-//        waitElementToBeVisible(previousSlideButton);
-//        clickElement(previousSlideButton);
+        waitElementToBeVisible(activeSlide1);
+        waitElementToBeVisible(previousSlideButton);
+        clickElement(previousSlideButton);
+        waitElementToBeVisible(activeSlide16, 2);
+        waitElementToBeVisible(previousSlideButton);
+        clickElement(previousSlideButton);
+        waitElementToBeVisible(activeSlide1, 2);
         return this;
     }
 }
