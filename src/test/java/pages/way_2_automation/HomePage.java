@@ -110,7 +110,6 @@ public class HomePage extends BasePage {
     public HomePage checkPopularCoursesBlockNavigation() {
         String firstActiveSlideIndex;
         String previousSlideIndex;
-        WebElement currentActiveSlide;
 
         scrollToElement(popularCoursesBlock);
         waitElementToBeVisible(popularCoursesTitle);
