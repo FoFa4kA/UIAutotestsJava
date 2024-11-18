@@ -7,6 +7,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.base.BasePage;
 
+import static org.testng.AssertJUnit.assertEquals;
+
 public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver, Actions actions) {
@@ -16,12 +18,14 @@ public class HomePage extends BasePage {
 
     @FindBy(css = ".dialog-widget-content")
     private WebElement dialogWidget;
-    @FindBy(css = ".eicon-close")
+    @FindBy(css = ".dialog-close-button")
     private WebElement closeWidgetButton;
     @FindBy(css = ".ast-above-header-bar[data-section='section-above-header-builder']")
     private WebElement headerWithContacts;
     @FindBy(css = "#ast-desktop-header nav")
     private WebElement navigationBar;
+    @FindBy(css = ".ast-sticky-active nav")
+    private WebElement navBarAfterScroll;
     @FindBy(css= ".swiper-slide-active a.elementor-slide-button")
     private WebElement registerButton;
     @FindBy(css = "section[data-id='5b4952c1']")
@@ -29,23 +33,23 @@ public class HomePage extends BasePage {
     @FindBy(css = "section[data-id='60087569']")
     private WebElement footer;
     @FindBy(css = "a[href='https://wa.me/+919711111558']")
-    private WebElement firstPhone;
+    private WebElement firstPhoneInHeader;
     @FindBy(css = "a[href='https://wa.me/+919711191558']")
-    private WebElement secondPhone;
+    private WebElement secondPhoneInHeader;
     @FindBy(css = "a[href='tel:+16464800603']")
-    private WebElement thirdPhone;
+    private WebElement thirdPhoneInHeader;
     @FindBy(css = "a[href='skype:seleniumcoaching?chat']")
-    private WebElement skype;
-    @FindBy(css = "a[href='skype:seleniumcoaching?chat']")
-    private WebElement email;
+    private WebElement skypeInHeader;
+    @FindBy(xpath = "(//span[text()='trainer@way2automation.com'])[1]")
+    private WebElement emailInHeader;
     @FindBy(css = "a[aria-label='Facebook']")
-    private WebElement facebook;
+    private WebElement facebookInHeader;
     @FindBy(css = "a[aria-label='Linkedin']")
-    private WebElement linkedin;
+    private WebElement linkedinInHeader;
     @FindBy(css = "a[aria-label='Google']")
-    private WebElement google;
+    private WebElement googleInHeader;
     @FindBy(css = "a[aria-label='YouTube']")
-    private WebElement youtube;
+    private WebElement youtubeInHeader;
     @FindBy(css = ".elementor-element-166618a")
     private WebElement popularCoursesBlock;
     @FindBy(css = ".elementor-element-d268105")
@@ -54,44 +58,92 @@ public class HomePage extends BasePage {
     private WebElement nextSlideButton;
     @FindBy(css = ".pp-slider-arrow[aria-label='Previous slide']")
     private WebElement previousSlideButton;
-    @FindBy(css = ".swiper-slide-active[aria-label='1 / 16']")
-    private WebElement activeSlide1;
-    @FindBy(css = ".swiper-slide-active[aria-label='16 / 16']")
-    private WebElement activeSlide16;
+    @FindBy(css = "div[data-id='50827c4'] .swiper-slide-prev")
+    private WebElement previousSlide;
+    @FindBy(css = "div[data-id='50827c4'] .swiper-slide-active")
+    private WebElement activeSlide;
+    @FindBy(css = "div[data-id='50827c4'] .swiper-slide-next")
+    private WebElement nextSlide;
+    @FindBy(xpath = "//span[text()='Way2Automation']")
+    private WebElement addressInFooter;
+    @FindBy(xpath = "//span[text()='+91 97111-11-558']")
+    private WebElement firstPhoneInFooter;
+    @FindBy(xpath = "//span[text()='+91 97111-91-558']")
+    private WebElement secondPhoneInFooter;
+    @FindBy(xpath = "(//span[text()='trainer@way2automation.com'])[2]")
+    private WebElement firstEmailInFooter;
+    @FindBy(css = "a[href='mailto:seleniumcoaching@gmail.com']")
+    private WebElement secondEmailInFooter;
+    @FindBy(css = "#menu-item-27617")
+    private WebElement resourcesInNavBar;
+    @FindBy(css = "#menu-item-27619")
+    private WebElement site2InResources;
 
+    public HomePage closeModal() {
+        moveToElement(headerWithContacts);
+        waitElementToBeVisible(dialogWidget, 10);
+        waitElementToBeVisible(closeWidgetButton, 10).click();
+        return this;
+    }
 
-
-    public HomePage checkPageOpen() {
+    public HomePage checkPageOpenAndMainElements() {
         waitElementToBeVisible(headerWithContacts);
         waitElementToBeVisible(navigationBar);
-//        waitElementToBeVisible(registerButton);
+        waitElementToBeVisible(registerButton);
         waitElementToBeVisible(coursesList);
         waitElementToBeVisible(footer);
         return this;
     }
 
     public HomePage checkHeaderWithContacts() {
-        waitElementToBeVisible(firstPhone);
-        waitElementToBeVisible(secondPhone);
-        waitElementToBeVisible(thirdPhone);
-        waitElementToBeVisible(skype);
-        waitElementToBeVisible(email);
-        waitElementToBeVisible(facebook);
-        waitElementToBeVisible(google);
-        waitElementToBeVisible(youtube);
+        waitElementToBeVisible(firstPhoneInHeader);
+        waitElementToBeVisible(secondPhoneInHeader);
+        waitElementToBeVisible(thirdPhoneInHeader);
+        waitElementToBeVisible(skypeInHeader);
+        waitElementToBeVisible(emailInHeader);
+        waitElementToBeVisible(facebookInHeader);
+        waitElementToBeVisible(googleInHeader);
+        waitElementToBeVisible(youtubeInHeader);
         return this;
     }
 
-    public HomePage popularCoursesBlockNavigation() {
+    public HomePage checkPopularCoursesBlockNavigation() {
+        String firstActiveSlideIndex;
+        String previousSlideIndex;
+        WebElement currentActiveSlide;
+
         scrollToElement(popularCoursesBlock);
         waitElementToBeVisible(popularCoursesTitle);
-        waitElementToBeVisible(activeSlide1);
-        waitElementToBeVisible(previousSlideButton);
-        clickElement(previousSlideButton);
-        waitElementToBeVisible(activeSlide16, 2);
-        waitElementToBeVisible(previousSlideButton);
-        clickElement(previousSlideButton);
-        waitElementToBeVisible(activeSlide1, 2);
+        waitElementToBeVisible(activeSlide);
+        firstActiveSlideIndex = activeSlide.getAttribute("data-swiper-slide-index");
+        previousSlideIndex = previousSlide.getAttribute("data-swiper-slide-index");
+        waitElementToBeVisible(previousSlideButton).click();
+        assertEquals(previousSlideIndex, activeSlide.getAttribute("data-swiper-slide-index"));
+        moveToElementAndClickWithPause(nextSlideButton, 1);
+        assertEquals(firstActiveSlideIndex, activeSlide.getAttribute("data-swiper-slide-index"));
         return this;
+    }
+
+    public HomePage checkFooterWithContacts() {
+        scrollToElement(footer);
+        waitElementToBeVisible(footer);
+        waitElementToBeVisible(addressInFooter);
+        waitElementToBeVisible(firstPhoneInFooter);
+        waitElementToBeVisible(secondPhoneInFooter);
+        waitElementToBeVisible(firstEmailInFooter);
+        waitElementToBeVisible(secondEmailInFooter);
+        return this;
+    }
+
+    public HomePage checkNavBarAfterScroll() {
+        scrollToElement(popularCoursesBlock);
+        waitElementToBeVisible(navBarAfterScroll);
+        return this;
+    }
+
+    public PracticeSite2Page goToPageViaNavBar() {
+        moveToElement(resourcesInNavBar);
+        waitElementToBeVisible(site2InResources).click();
+        return new PracticeSite2Page(driver, actions);
     }
 }

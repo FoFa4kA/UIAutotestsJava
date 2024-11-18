@@ -1,6 +1,7 @@
 package pages.base;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -35,10 +36,22 @@ public class BasePage {
         return element;
     }
 
-    public WebElement waitElementToBeClickable(WebElement element) {
-        new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(getProp("explicit_wait"))))
-                .until(ExpectedConditions.elementToBeClickable(element));
-        return element;
+    public boolean elementIsVisible(WebElement element) {
+        try {
+            element.isDisplayed();
+            return true;
+        } catch (NoSuchElementException e) {
+            return false;
+        }
+    }
+
+    public boolean elementNotVisible(WebElement element) {
+        try {
+            element.isDisplayed();
+            return false;
+        } catch (NoSuchElementException e) {
+            return true;
+        }
     }
 
     public WebElement scrollToElement(WebElement element) {
@@ -51,8 +64,11 @@ public class BasePage {
         return element;
     }
 
-    public void clickElement(WebElement element) {
-        JavascriptExecutor executor = (JavascriptExecutor) driver;
-        executor.executeScript("arguments[0].click();", element);
+    public WebElement moveToElementAndClickWithPause(WebElement element, long seconds) {
+        actions.moveToElement(element)
+                .pause(Duration.ofSeconds(seconds))
+                .click()
+                .perform();
+        return element;
     }
 }

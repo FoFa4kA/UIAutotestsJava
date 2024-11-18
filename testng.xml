@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="UIAutotestJava">
+    <test name="Test Home Page and Login Page">
+        <classes>
+            <class name="tests.way_2_automation.HomePageMainElementsTest"/>
+            <class name="tests.way_2_automation.LoginPageTest"/>
+        </classes>
+    </test>
+</suite>
