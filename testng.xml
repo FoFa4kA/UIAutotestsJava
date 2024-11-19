@@ -3,8 +3,8 @@
 <suite name="UIAutotestJava">
     <test name="Test Home Page and Login Page">
         <classes>
-            <class name="tests.way_2_automation.HomePageMainElementsTest"/>
-            <class name="tests.way_2_automation.LoginPageTest"/>
+            <class name="tests.way2automation.HomePageMainElementsTest"/>
+            <class name="tests.way2automation.LoginPageTest"/>
         </classes>
     </test>
 </suite>

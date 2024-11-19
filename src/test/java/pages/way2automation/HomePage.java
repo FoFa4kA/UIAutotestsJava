@@ -1,4 +1,4 @@
-package pages.way_2_automation;
+package pages.way2automation;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,6 +6,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.base.BasePage;
+
+import java.util.List;
 
 import static org.testng.AssertJUnit.assertEquals;
 
@@ -87,23 +89,27 @@ public class HomePage extends BasePage {
     }
 
     public HomePage checkPageOpenAndMainElements() {
-        waitElementToBeVisible(headerWithContacts);
-        waitElementToBeVisible(navigationBar);
-        waitElementToBeVisible(registerButton);
-        waitElementToBeVisible(coursesList);
-        waitElementToBeVisible(footer);
+        List.of(
+            headerWithContacts,
+            navigationBar,
+            registerButton,
+            coursesList,
+            footer
+        ).forEach(this::waitElementToBeVisible);
         return this;
     }
 
     public HomePage checkHeaderWithContacts() {
-        waitElementToBeVisible(firstPhoneInHeader);
-        waitElementToBeVisible(secondPhoneInHeader);
-        waitElementToBeVisible(thirdPhoneInHeader);
-        waitElementToBeVisible(skypeInHeader);
-        waitElementToBeVisible(emailInHeader);
-        waitElementToBeVisible(facebookInHeader);
-        waitElementToBeVisible(googleInHeader);
-        waitElementToBeVisible(youtubeInHeader);
+        List.of(
+            firstPhoneInHeader,
+            secondPhoneInHeader,
+            thirdPhoneInHeader,
+            skypeInHeader,
+            emailInHeader,
+            facebookInHeader,
+            googleInHeader,
+            youtubeInHeader
+        ).forEach(this::waitElementToBeVisible);
         return this;
     }
 
@@ -112,8 +118,7 @@ public class HomePage extends BasePage {
         String previousSlideIndex;
 
         scrollToElement(popularCoursesBlock);
-        waitElementToBeVisible(popularCoursesTitle);
-        waitElementToBeVisible(activeSlide);
+        List.of(popularCoursesTitle, activeSlide).forEach(this::waitElementToBeVisible);
         firstActiveSlideIndex = activeSlide.getAttribute("data-swiper-slide-index");
         previousSlideIndex = previousSlide.getAttribute("data-swiper-slide-index");
         waitElementToBeVisible(previousSlideButton).click();
@@ -125,12 +130,13 @@ public class HomePage extends BasePage {
 
     public HomePage checkFooterWithContacts() {
         scrollToElement(footer);
-        waitElementToBeVisible(footer);
-        waitElementToBeVisible(addressInFooter);
-        waitElementToBeVisible(firstPhoneInFooter);
-        waitElementToBeVisible(secondPhoneInFooter);
-        waitElementToBeVisible(firstEmailInFooter);
-        waitElementToBeVisible(secondEmailInFooter);
+        List.of(
+            addressInFooter,
+            firstPhoneInFooter,
+            secondPhoneInFooter,
+            firstEmailInFooter,
+            secondEmailInFooter
+        ).forEach(this::waitElementToBeVisible);
         return this;
     }
 

@@ -1,4 +1,4 @@
-package pages.way_2_automation;
+package pages.way2automation;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -6,6 +6,8 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.base.BasePage;
+
+import java.util.List;
 
 import static org.testng.AssertJUnit.assertTrue;
 import static util.PropertiesUtil.getProp;
@@ -64,9 +66,11 @@ public class LoginPage extends BasePage {
 
     public LoginPage checkLogout() {
         waitElementToBeVisible(logoutButton).click();
-        waitElementToBeVisible(usernameInput);
-        waitElementToBeVisible(passwordInput);
-        waitElementToBeVisible(usernameDiscInput);
+        List.of(
+            usernameInput,
+            passwordInput,
+            usernameDiscInput
+        ).forEach(this::waitElementToBeVisible);
         return this;
     }
 

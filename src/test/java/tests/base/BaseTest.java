@@ -4,11 +4,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterTest;
 import pages.base.BasePage;
-import pages.way_2_automation.HomePage;
-import pages.way_2_automation.LoginPage;
+import pages.way2automation.HomePage;
+import pages.way2automation.LoginPage;
 
 import static common.CommonActions.createDriver;
-import static util.GetBoolean.getBooleanFromString;
 import static util.PropertiesUtil.getProp;
 
 public class BaseTest {
@@ -20,8 +19,7 @@ public class BaseTest {
 
     @AfterTest
     public void close() {
-        boolean closeBrowser = getBooleanFromString(getProp("close_browser"));
-        if (closeBrowser) {
+        if (Boolean.parseBoolean(getProp("close_browser"))) {
             driver.quit();
         }
     }

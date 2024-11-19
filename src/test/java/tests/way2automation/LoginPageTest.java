@@ -1,4 +1,4 @@
-package tests.way_2_automation;
+package tests.way2automation;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
@@ -11,7 +11,7 @@ public class LoginPageTest extends BaseTest {
 
     @BeforeTest
     public void setUp() {
-        basePage.open(getProp("login_page"));
+        driver.get(getProp("login_page"));
     }
 
     @Test

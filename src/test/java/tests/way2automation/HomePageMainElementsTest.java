@@ -1,4 +1,4 @@
-package tests.way_2_automation;
+package tests.way2automation;
 
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -10,7 +10,7 @@ public class HomePageMainElementsTest extends BaseTest {
 
     @BeforeTest
     public void setUp() {
-        basePage.open(getProp("home_page"));
+        driver.get(getProp("home_page"));
         homePage.closeModal();
     }
 

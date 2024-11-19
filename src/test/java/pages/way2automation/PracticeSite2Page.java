@@ -1,4 +1,4 @@
-package pages.way_2_automation;
+package pages.way2automation;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
@@ -16,11 +16,8 @@ public class PracticeSite2Page extends BasePage {
     }
 
     public PracticeSite2Page checkUrlAndTitle() {
-        String pageUrl = driver.getCurrentUrl();
-        String pageTitle = driver.getTitle();;
-
-        assertEquals(getProp("practice_site_2"), pageUrl);
-        assertEquals(getProp("practice_site_2_title"), pageTitle);
+        assertEquals(getProp("practice_site_2"), driver.getCurrentUrl());
+        assertEquals(getProp("practice_site_2_title"), driver.getTitle());
         return this;
     }
 }
