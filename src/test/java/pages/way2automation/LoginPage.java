@@ -1,5 +1,6 @@
 package pages.way2automation;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -43,6 +44,7 @@ public class LoginPage extends BasePage {
         waitElementToBeVisible(usernameDiscInput).sendKeys(getProp(usernameDesc));
     }
 
+    @Step("Проверка ввод во все поля ввода и активация кпопки 'Login'")
     public LoginPage checkInputsAndLoginButtonDisabled() {
         waitElementToBeVisible(disabledLoginButton);
         enterCredentialsIntoFields("username", "password", "user_desc");
@@ -50,6 +52,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Проверка авторизации с валидными данными")
     public LoginPage checkSuccessLogin() {
         enterCredentialsIntoFields("username", "password", "user_desc");
         waitElementToBeVisible(loginButton).click();
@@ -57,6 +60,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Проверка попытки авторизации с невалидными данными")
     public LoginPage checkLoginWithInvalidCredentials() {
         enterCredentialsIntoFields("invalid_data", "invalid_data", "user_desc");
         waitElementToBeVisible(loginButton).click();
@@ -64,6 +68,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Проверка выхода из аккаунта")
     public LoginPage checkLogout() {
         waitElementToBeVisible(logoutButton).click();
         List.of(
@@ -74,6 +79,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
+    @Step("Очистка полей ввода или выход из аккаунта")
     public LoginPage clearAllFieldsOrLogout() {
         if (elementIsVisible(usernameInput)) {
             waitElementToBeVisible(usernameInput).clear();
