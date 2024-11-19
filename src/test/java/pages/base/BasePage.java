@@ -20,10 +20,6 @@ public class BasePage {
         this.actions = actions;
     }
 
-    public void open(String url) {
-        driver.get(url);
-    }
-
     public WebElement waitElementToBeVisible(WebElement element) {
         new WebDriverWait(driver, Duration.ofSeconds(Long.parseLong(getProp("explicit_wait"))))
                 .until(ExpectedConditions.visibilityOf(element));
