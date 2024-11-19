@@ -2,7 +2,7 @@ package tests.base;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterClass;
 import pages.base.BasePage;
 import pages.way2automation.HomePage;
 import pages.way2automation.LoginPage;
@@ -17,7 +17,7 @@ public class BaseTest {
     protected HomePage homePage = new HomePage(driver, actions);
     protected LoginPage loginPage = new LoginPage(driver, actions);
 
-    @AfterTest
+    @AfterClass
     public void close() {
         if (Boolean.parseBoolean(getProp("close_browser"))) {
             driver.quit();
