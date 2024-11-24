@@ -30,7 +30,9 @@ public class LoginPageTest extends BaseTest {
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
     public void checkSuccessLogin() {
-        loginPage.checkSuccessLogin();
+        loginPage.enterCredentialsIntoFields("username", "password", "user_desc")
+                .clickLoginButton()
+                .successLoginMessageAppears();
     }
 
     @Epic(value = "Страница авторизации")
@@ -39,7 +41,9 @@ public class LoginPageTest extends BaseTest {
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
     public void checkLoginWithInvalidCredentials() {
-        loginPage.checkLoginWithInvalidCredentials();
+        loginPage.enterCredentialsIntoFields("invalid_data", "invalid_data", "user_desc")
+                .clickLoginButton()
+                .incorrectCredentialsMessageAppears();
     }
 
     @Epic(value = "Страница авторизации")
@@ -48,7 +52,9 @@ public class LoginPageTest extends BaseTest {
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
     public void checkLogout() {
-        loginPage.checkSuccessLogin()
+        loginPage.enterCredentialsIntoFields("username", "password", "user_desc")
+                .clickLoginButton()
+                .successLoginMessageAppears()
                 .checkLogout();
     }
 
