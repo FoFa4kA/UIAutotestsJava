@@ -1,5 +1,6 @@
 package pages.way2automation;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -81,6 +82,7 @@ public class HomePage extends BasePage {
     @FindBy(css = "#menu-item-27619")
     private WebElement site2InResources;
 
+    @Step("Закрытие модального окна")
     public HomePage closeModal() {
         moveToElement(headerWithContacts);
         waitElementToBeVisible(dialogWidget, 10);
@@ -88,6 +90,7 @@ public class HomePage extends BasePage {
         return this;
     }
 
+    @Step("Проверка отображения основных элементов на странице")
     public HomePage checkPageOpenAndMainElements() {
         List.of(
             headerWithContacts,
@@ -99,6 +102,7 @@ public class HomePage extends BasePage {
         return this;
     }
 
+    @Step("Проверка наличия контактных данных в хедере")
     public HomePage checkHeaderWithContacts() {
         List.of(
             firstPhoneInHeader,
@@ -113,6 +117,7 @@ public class HomePage extends BasePage {
         return this;
     }
 
+    @Step("Проверка навигации в блоке с популярными курсами")
     public HomePage checkPopularCoursesBlockNavigation() {
         String firstActiveSlideIndex;
         String previousSlideIndex;
@@ -128,6 +133,7 @@ public class HomePage extends BasePage {
         return this;
     }
 
+    @Step("Проверка отображения футера с контактными данными")
     public HomePage checkFooterWithContacts() {
         scrollToElement(footer);
         List.of(
@@ -140,12 +146,14 @@ public class HomePage extends BasePage {
         return this;
     }
 
+    @Step("Проверка отображения навигационного меню после скролла страницы вниз")
     public HomePage checkNavBarAfterScroll() {
         scrollToElement(popularCoursesBlock);
         waitElementToBeVisible(navBarAfterScroll);
         return this;
     }
 
+    @Step("Проверка перехода на другую страницу по ссылке в навигационном меню")
     public PracticeSite2Page goToPageViaNavBar() {
         moveToElement(resourcesInNavBar);
         waitElementToBeVisible(site2InResources).click();
