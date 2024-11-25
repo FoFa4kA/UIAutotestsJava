@@ -10,6 +10,7 @@ import pages.base.BasePage;
 
 import java.util.List;
 
+import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
 import static util.PropertiesUtil.getProp;
 
@@ -67,7 +68,7 @@ public class LoginPage extends BasePage {
     public LoginPage checkInputsAndLoginButtonDisabled() {
         waitElementToBeVisible(disabledLoginButton);
         enterCredentialsIntoFields("username", "password", "user_desc");
-        assertTrue(elementNotVisible(disabledLoginButton));
+        assertFalse(disabledLoginButton.isDisplayed());
         return this;
     }
 
@@ -84,7 +85,7 @@ public class LoginPage extends BasePage {
 
     @Step("Очистка полей ввода или выход из аккаунта")
     public LoginPage clearAllFieldsOrLogout() {
-        if (elementIsVisible(usernameInput)) {
+        if (usernameInput.isDisplayed()) {
             waitElementToBeVisible(usernameInput).clear();
             waitElementToBeVisible(passwordInput).clear();
             waitElementToBeVisible(usernameDiscInput).clear();

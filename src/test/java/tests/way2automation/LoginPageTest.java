@@ -1,6 +1,7 @@
 package tests.way2automation;
 
 import io.qameta.allure.*;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -59,7 +60,8 @@ public class LoginPageTest extends BaseTest {
     }
 
     @AfterMethod
-    public void clearAllFieldsOrLogout() {
+    public void takeScreenshotIfFailedAndClearAllFieldsOrLogout(ITestResult result) {
+        takeScreenshotIfTestFailed(result);
         loginPage.clearAllFieldsOrLogout();
     }
 }

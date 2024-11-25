@@ -3,6 +3,7 @@ package tests.way2automation;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -39,7 +40,8 @@ public class AuthorizationTest extends BaseTest {
     }
 
     @AfterMethod
-    public void clearAllFieldsOrLogout() {
+    public void takeScreenshotIfFailedAndClearAllFieldsOrLogout(ITestResult result) {
+        takeScreenshotIfTestFailed(result);
         loginPage.clearAllFieldsOrLogout();
     }
 }

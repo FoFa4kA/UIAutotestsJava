@@ -31,15 +31,6 @@ public class BasePage {
         return element;
     }
 
-    public boolean elementIsVisible(WebElement element) {
-        try {
-            element.isDisplayed();
-            return true;
-        } catch (NoSuchElementException e) {
-            return false;
-        }
-    }
-
     public boolean elementNotVisible(WebElement element) {
         try {
             element.isDisplayed();
@@ -63,6 +54,7 @@ public class BasePage {
         actions.moveToElement(element)
                 .pause(Duration.ofSeconds(seconds))
                 .click()
+                .pause(Duration.ofSeconds(seconds))
                 .perform();
         return element;
     }

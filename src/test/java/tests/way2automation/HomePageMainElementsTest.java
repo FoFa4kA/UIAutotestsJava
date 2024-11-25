@@ -1,6 +1,8 @@
 package tests.way2automation;
 
 import io.qameta.allure.*;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
@@ -68,5 +70,10 @@ public class HomePageMainElementsTest extends BaseTest {
     public void checkGoToPageViaNavMenu() {
         homePage.goToPageViaNavBar()
                 .checkUrlAndTitle();
+    }
+
+    @AfterMethod
+    public void takeScreenShotIfTestFailed(ITestResult result) {
+        takeScreenshotIfTestFailed(result);
     }
 }
