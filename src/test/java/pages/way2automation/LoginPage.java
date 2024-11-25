@@ -8,11 +8,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.base.BasePage;
 
-import java.util.List;
 import java.util.Map;
 
 import static org.testng.AssertJUnit.assertFalse;
-import static org.testng.AssertJUnit.assertTrue;
 import static util.PropertiesUtil.getProp;
 
 public class LoginPage extends BasePage {
