@@ -37,7 +37,7 @@ public class HomePageMainElementsTest extends BaseTest {
     @Feature(value = "Основные элементы страницы")
     @Story(value = "Навигация в блоке популярных курсов")
     @Severity(value = SeverityLevel.NORMAL)
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void checkPopularCourses() {
         homePage.checkPopularCoursesBlockNavigation();
     }
@@ -46,7 +46,7 @@ public class HomePageMainElementsTest extends BaseTest {
     @Feature(value = "Основные элементы страницы")
     @Story(value = "Контакты в футере")
     @Severity(value = SeverityLevel.NORMAL)
-    @Test(priority = 1)
+    @Test(priority = 3)
     public void checkFooter() {
         homePage.checkFooterWithContacts();
     }
@@ -55,7 +55,7 @@ public class HomePageMainElementsTest extends BaseTest {
     @Feature(value = "Основные элементы страницы")
     @Story(value = "Навигационное меню после скрола страницы вниз")
     @Severity(value = SeverityLevel.MINOR)
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void checkNavigationMenuAfterScroll() {
         homePage.checkNavBarAfterScroll();
     }
@@ -64,7 +64,7 @@ public class HomePageMainElementsTest extends BaseTest {
     @Feature(value = "Переходы на другие страницы")
     @Story(value = "Переход на другую страницу через навигационное меню")
     @Severity(value = SeverityLevel.CRITICAL)
-    @Test(priority = 2)
+    @Test(priority = 4)
     public void checkGoToPageViaNavMenu() {
         homePage.goToPageViaNavBar()
                 .checkUrlAndTitle();
