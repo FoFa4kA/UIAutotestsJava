@@ -24,22 +24,22 @@ public class HomePageMainElementsTest extends BaseTest {
         homePage.checkHeaderWithContacts();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void checkPopularCourses() {
         homePage.checkPopularCoursesBlockNavigation();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 3)
     public void checkFooter() {
         homePage.checkFooterWithContacts();
     }
 
-    @Test(priority = 1)
+    @Test(priority = 2)
     public void checkNavigationMenuAfterScroll() {
         homePage.checkNavBarAfterScroll();
     }
 
-    @Test(priority = 2)
+    @Test(priority = 4)
     public void checkGoToPageViaNavMenu() {
         homePage.goToPageViaNavBar()
                 .checkUrlAndTitle();

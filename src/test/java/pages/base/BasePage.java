@@ -33,19 +33,9 @@ public class BasePage {
 
     public boolean elementIsVisible(WebElement element) {
         try {
-            element.isDisplayed();
-            return true;
+            return element.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;
-        }
-    }
-
-    public boolean elementNotVisible(WebElement element) {
-        try {
-            element.isDisplayed();
-            return false;
-        } catch (NoSuchElementException e) {
-            return true;
         }
     }
 
