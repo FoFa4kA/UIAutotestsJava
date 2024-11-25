@@ -1,6 +1,9 @@
 package tests.way2automation;
 
-import io.qameta.allure.*;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -8,6 +11,7 @@ import tests.base.BaseTest;
 
 import static util.PropertiesUtil.getProp;
 
+@Feature(value = "Страница авторизации")
 public class LoginPageTest extends BaseTest {
 
     @BeforeTest
@@ -15,8 +19,7 @@ public class LoginPageTest extends BaseTest {
         driver.get(getProp("login_page"));
     }
 
-    @Epic(value = "Страница авторизации")
-    @Feature(value = "Форма авторизации")
+
     @Story(value = "Поля ввода и кнопка 'Login'")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
@@ -24,8 +27,6 @@ public class LoginPageTest extends BaseTest {
         loginPage.checkInputsAndLoginButtonDisabled();
     }
 
-    @Epic(value = "Страница авторизации")
-    @Feature(value = "Авторизация")
     @Story(value = "Успешная авторизация")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
@@ -35,8 +36,6 @@ public class LoginPageTest extends BaseTest {
                 .successLoginMessageAppears();
     }
 
-    @Epic(value = "Страница авторизации")
-    @Feature(value = "Авторизация")
     @Story(value = "Авторизация с невалидными данными")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
@@ -46,8 +45,6 @@ public class LoginPageTest extends BaseTest {
                 .incorrectCredentialsMessageAppears();
     }
 
-    @Epic(value = "Страница авторизации")
-    @Feature(value = "Авторизация")
     @Story(value = "Выход из аккаунта")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
