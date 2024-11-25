@@ -37,14 +37,6 @@ public class LoginPage extends BasePage {
     @FindBy(css = "a[href='#/login']")
     private WebElement logoutButton;
 
-    @Step("Ввод данных для авторизации")
-    public LoginPage enterCredentialsIntoFields(String username, String password, String usernameDesc) {
-        waitElementToBeVisible(usernameInput).sendKeys(getProp(username));
-        waitElementToBeVisible(passwordInput).sendKeys(getProp(password));
-        waitElementToBeVisible(usernameDiscInput).sendKeys(getProp(usernameDesc));
-        return this;
-    }
-
     @Step("Нажатие на активную кнопку 'Login'")
     public LoginPage clickLoginButton() {
         moveToElementAndClickWithPause(loginButton, 1);
@@ -61,13 +53,16 @@ public class LoginPage extends BasePage {
     public LoginPage successLoginMessageAppears() {
         waitElementToBeVisible(successLoggedInMessage);
         return this;
+    }
 
-    private void enterCredentialsIntoFields(String username, String password, String usernameDesc) {
+    @Step("Ввод данных для авторизации")
+    public LoginPage enterCredentialsIntoFields(String username, String password, String usernameDesc) {
         Map.of(
                 usernameInput, username,
                 passwordInput, password,
                 usernameDiscInput, usernameDesc
         ).forEach((field, value) -> waitElementToBeVisible(field).sendKeys(getProp(value)));
+        return this;
     }
 
     @Step("Проверка ввод во все поля ввода и активация кпопки 'Login'")
@@ -104,9 +99,9 @@ public class LoginPage extends BasePage {
     @Step("Очистка полей ввода или выход из аккаунта")
     public LoginPage clearAllFieldsOrLogout() {
         if (elementIsVisible(usernameInput)) {
-            usernameInput.clear();
-            passwordInput.clear();
-            usernameDiscInput.clear();
+            waitElementToBeVisible(usernameInput).clear();
+            waitElementToBeVisible(passwordInput).clear();
+            waitElementToBeVisible(usernameDiscInput).clear();
         } else {
             checkLogout();
         }
