@@ -37,13 +37,32 @@ public class LoginPage extends BasePage {
     @FindBy(css = "a[href='#/login']")
     private WebElement logoutButton;
 
+    @Step("Нажатие на активную кнопку 'Login'")
+    public LoginPage clickLoginButton() {
+        loginButton.click();
+        return this;
+    }
 
-    private void enterCredentialsIntoFields(String username, String password, String usernameDesc) {
+    @Step("Появление сообщения 'Username or password is incorrect'")
+    public LoginPage incorrectCredentialsMessageAppears() {
+        waitElementToBeVisible(incorrectCredentialsMessage);
+        return this;
+    }
+
+    @Step("Появление сообщения об успешной авторизации")
+    public LoginPage successLoginMessageAppears() {
+        waitElementToBeVisible(successLoggedInMessage);
+        return this;
+    }
+
+    @Step("Ввод данных для авторизации")
+    public LoginPage enterCredentialsIntoFields(String username, String password, String usernameDesc) {
         Map.of(
                 usernameInput, username,
                 passwordInput, password,
                 usernameDiscInput, usernameDesc
         ).forEach((field, value) -> waitElementToBeVisible(field).sendKeys(getProp(value)));
+        return this;
     }
 
     @Step("Проверка ввод во все поля ввода и активация кпопки 'Login'")
@@ -51,22 +70,6 @@ public class LoginPage extends BasePage {
         waitElementToBeVisible(disabledLoginButton);
         enterCredentialsIntoFields("username", "password", "user_desc");
         assertFalse(elementIsVisible(disabledLoginButton));
-        return this;
-    }
-
-    @Step("Проверка авторизации с валидными данными")
-    public LoginPage checkSuccessLogin() {
-        enterCredentialsIntoFields("username", "password", "user_desc");
-        waitElementToBeVisible(loginButton).click();
-        waitElementToBeVisible(successLoggedInMessage);
-        return this;
-    }
-
-    @Step("Проверка попытки авторизации с невалидными данными")
-    public LoginPage checkLoginWithInvalidCredentials() {
-        enterCredentialsIntoFields("invalid_data", "invalid_data", "user_desc");
-        waitElementToBeVisible(loginButton).click();
-        waitElementToBeVisible(incorrectCredentialsMessage);
         return this;
     }
 

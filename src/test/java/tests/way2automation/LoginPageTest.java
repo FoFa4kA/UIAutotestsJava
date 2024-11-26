@@ -31,21 +31,27 @@ public class LoginPageTest extends BaseTest {
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
     public void checkSuccessLogin() {
-        loginPage.checkSuccessLogin();
+        loginPage.enterCredentialsIntoFields("username", "password", "user_desc")
+                .clickLoginButton()
+                .successLoginMessageAppears();
     }
 
     @Story(value = "Авторизация с невалидными данными")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
     public void checkLoginWithInvalidCredentials() {
-        loginPage.checkLoginWithInvalidCredentials();
+        loginPage.enterCredentialsIntoFields("invalid_data", "invalid_data", "user_desc")
+                .clickLoginButton()
+                .incorrectCredentialsMessageAppears();
     }
 
     @Story(value = "Выход из аккаунта")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
     public void checkLogout() {
-        loginPage.checkSuccessLogin()
+        loginPage.enterCredentialsIntoFields("username", "password", "user_desc")
+                .clickLoginButton()
+                .successLoginMessageAppears()
                 .checkLogout();
     }
 

@@ -5,6 +5,7 @@
         <classes>
             <class name="tests.way2automation.HomePageMainElementsTest"/>
             <class name="tests.way2automation.LoginPageTest"/>
+            <class name="tests.way2automation.AuthorizationTest"/>
         </classes>
     </test>
 </suite>
