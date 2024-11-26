@@ -1,5 +1,6 @@
 package tests.base;
 
+import io.qameta.allure.Epic;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.ITestResult;
@@ -19,6 +20,7 @@ import static common.CommonActions.createDriver;
 import static util.AddAttachment.getBytes;
 import static util.PropertiesUtil.getProp;
 
+@Epic(value = "UI Тесты")
 public class BaseTest {
     protected WebDriver driver = createDriver();
     protected Actions actions = new Actions(driver);

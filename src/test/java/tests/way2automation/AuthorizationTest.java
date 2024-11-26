@@ -12,6 +12,7 @@ import util.LoginDataProviders;
 
 import static util.PropertiesUtil.getProp;
 
+@Feature(value = "Авторизация")
 public class AuthorizationTest extends BaseTest {
 
     @BeforeTest
@@ -19,18 +20,14 @@ public class AuthorizationTest extends BaseTest {
         driver.get(getProp("login_page"));
     }
 
-    @Epic(value = "Страница авторизации")
-    @Feature(value = "Авторизация")
     @Story(value = "Попытка авторизации с невалидными данными")
-    @Test(dataProvider = "Invalid data for login", dataProviderClass = LoginDataProviders.class)
+    @Test(priority = 1, dataProvider = "Invalid data for login", dataProviderClass = LoginDataProviders.class)
     public void checkLoginWithInvalidData(String username, String password, String description) {
         loginPage.enterCredentialsIntoFields(username, password, description)
                 .clickLoginButton()
                 .incorrectCredentialsMessageAppears();
     }
 
-    @Epic(value = "Страница авторизации")
-    @Feature(value = "Авторизация")
     @Story(value = "Авторизация с валидными данными")
     @Test(dataProvider = "Valid data for login", dataProviderClass = LoginDataProviders.class)
     public void checkLoginWithValidData(String username, String password, String description) {
