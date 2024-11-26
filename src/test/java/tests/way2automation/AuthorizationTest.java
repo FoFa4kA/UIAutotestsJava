@@ -20,7 +20,7 @@ public class AuthorizationTest extends BaseTest {
     }
 
     @Story(value = "Попытка авторизации с невалидными данными")
-    @Test(dataProvider = "Invalid data for login", dataProviderClass = LoginDataProviders.class)
+    @Test(priority = 1, dataProvider = "Invalid data for login", dataProviderClass = LoginDataProviders.class)
     public void checkLoginWithInvalidData(String username, String password, String description) {
         loginPage.enterCredentialsIntoFields(username, password, description)
                 .clickLoginButton()

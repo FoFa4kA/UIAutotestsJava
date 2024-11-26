@@ -39,7 +39,7 @@ public class LoginPage extends BasePage {
 
     @Step("Нажатие на активную кнопку 'Login'")
     public LoginPage clickLoginButton() {
-        moveToElementAndClickWithPause(loginButton, 1);
+        loginButton.click();
         return this;
     }
 
@@ -73,22 +73,6 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Проверка авторизации с валидными данными")
-    public LoginPage checkSuccessLogin() {
-        enterCredentialsIntoFields("username", "password", "user_desc");
-        waitElementToBeVisible(loginButton).click();
-        waitElementToBeVisible(successLoggedInMessage);
-        return this;
-    }
-
-    @Step("Проверка попытки авторизации с невалидными данными")
-    public LoginPage checkLoginWithInvalidCredentials() {
-        enterCredentialsIntoFields("invalid_data", "invalid_data", "user_desc");
-        waitElementToBeVisible(loginButton).click();
-        waitElementToBeVisible(incorrectCredentialsMessage);
-        return this;
-    }
-
     @Step("Проверка выхода из аккаунта")
     public LoginPage checkLogout() {
         waitElementToBeVisible(logoutButton).click();
@@ -99,9 +83,9 @@ public class LoginPage extends BasePage {
     @Step("Очистка полей ввода или выход из аккаунта")
     public LoginPage clearAllFieldsOrLogout() {
         if (elementIsVisible(usernameInput)) {
-            waitElementToBeVisible(usernameInput).clear();
-            waitElementToBeVisible(passwordInput).clear();
-            waitElementToBeVisible(usernameDiscInput).clear();
+            usernameInput.clear();
+            passwordInput.clear();
+            usernameDiscInput.clear();
         } else {
             checkLogout();
         }
