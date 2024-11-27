@@ -6,6 +6,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.Listeners;
 import pages.base.BasePage;
+import pages.sqlex.MainPage;
 import pages.way2automation.HomePage;
 import pages.way2automation.LoginPage;
 import ru.yandex.qatools.ashot.AShot;
@@ -29,6 +30,7 @@ public class BaseTest {
     protected BasePage basePage = new BasePage(driver, actions);
     protected HomePage homePage = new HomePage(driver, actions);
     protected LoginPage loginPage = new LoginPage(driver, actions);
+    protected MainPage mainPage = new MainPage(driver, actions);
 
     public void takeScreenshot() {
             Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100))
