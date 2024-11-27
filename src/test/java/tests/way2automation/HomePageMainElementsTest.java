@@ -4,6 +4,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
@@ -18,7 +19,6 @@ public class HomePageMainElementsTest extends BaseTest {
         driver.get(getProp("home_page"));
         homePage.closeModal();
     }
-
 
     @Story(value = "Хэдер, навигационное меню, кнопка регистрации, список курсов")
     @Severity(value = SeverityLevel.BLOCKER)
@@ -37,7 +37,8 @@ public class HomePageMainElementsTest extends BaseTest {
     @Story(value = "Навигация в блоке популярных курсов")
     @Severity(value = SeverityLevel.NORMAL)
     @Test(priority = 2)
-    public void checkPopularCourses() {
+    public void checkPopularCourses(ITestContext context) {
+        context.setAttribute("driver", driver);
         homePage.checkPopularCoursesBlockNavigation();
     }
 

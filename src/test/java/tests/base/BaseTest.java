@@ -3,14 +3,15 @@ package tests.base;
 import io.qameta.allure.Epic;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
-import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.Listeners;
 import pages.base.BasePage;
 import pages.way2automation.HomePage;
 import pages.way2automation.LoginPage;
 import ru.yandex.qatools.ashot.AShot;
 import ru.yandex.qatools.ashot.Screenshot;
 import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
+import util.TestListener;
 
 import javax.imageio.ImageIO;
 import java.io.File;
@@ -21,6 +22,7 @@ import static util.AddAttachment.getBytes;
 import static util.PropertiesUtil.getProp;
 
 @Epic(value = "UI Тесты")
+@Listeners(TestListener.class)
 public class BaseTest {
     protected WebDriver driver = createDriver();
     protected Actions actions = new Actions(driver);
@@ -28,8 +30,7 @@ public class BaseTest {
     protected HomePage homePage = new HomePage(driver, actions);
     protected LoginPage loginPage = new LoginPage(driver, actions);
 
-    public void takeScreenshotIfTestFailed(ITestResult result) {
-        if (result.getStatus() == ITestResult.FAILURE) {
+    public void takeScreenshot() {
             Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(100))
                     .takeScreenshot(driver);
             try {
@@ -39,7 +40,6 @@ public class BaseTest {
                 throw new RuntimeException(e);
             }
             getBytes("screen.png");
-        }
     }
 
     @AfterClass
