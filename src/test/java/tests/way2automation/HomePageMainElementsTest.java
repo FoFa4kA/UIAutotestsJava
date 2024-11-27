@@ -4,7 +4,6 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
@@ -37,8 +36,7 @@ public class HomePageMainElementsTest extends BaseTest {
     @Story(value = "Навигация в блоке популярных курсов")
     @Severity(value = SeverityLevel.NORMAL)
     @Test(priority = 2)
-    public void checkPopularCourses(ITestContext context) {
-        context.setAttribute("driver", driver);
+    public void checkPopularCourses() {
         homePage.checkPopularCoursesBlockNavigation();
     }
 
@@ -60,6 +58,14 @@ public class HomePageMainElementsTest extends BaseTest {
     @Severity(value = SeverityLevel.CRITICAL)
     @Test(priority = 4)
     public void checkGoToPageViaNavMenu() {
+        homePage.goToPageViaNavBar()
+                .checkUrlAndTitle();
+    }
+
+    @Story(value = "Повторный переход на страницу через навигационное меню")
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Test(priority = 5)
+    public void repeatGoToPageViaNavMenu() {
         homePage.goToPageViaNavBar()
                 .checkUrlAndTitle();
     }
