@@ -2,7 +2,6 @@ package tests.way2automation;
 
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -21,8 +20,7 @@ public class AuthorizationTest extends BaseTest {
 
     @Story(value = "Попытка авторизации с невалидными данными")
     @Test(priority = 1, dataProvider = "Invalid data for login", dataProviderClass = LoginDataProviders.class)
-    public void checkLoginWithInvalidData(String username, String password, String description, ITestContext context) {
-        context.setAttribute("driver", driver);
+    public void checkLoginWithInvalidData(String username, String password, String description) {
         loginPage.enterCredentialsIntoFields(username, password, description)
                 .clickLoginButton()
                 .incorrectCredentialsMessageAppears();

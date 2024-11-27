@@ -63,4 +63,12 @@ public class HomePageMainElementsTest extends BaseTest {
         homePage.goToPageViaNavBar()
                 .checkUrlAndTitle();
     }
+
+    @Story(value = "Повторный переход на страницу через навигационное меню")
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Test(priority = 5)
+    public void repeatGoToPageViaNavMenu() {
+        homePage.goToPageViaNavBar()
+                .checkUrlAndTitle();
+    }
 }
