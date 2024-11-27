@@ -1,9 +1,8 @@
 package tests.way2automation;
 
-import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Story;
-import org.testng.ITestResult;
+import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -22,7 +21,8 @@ public class AuthorizationTest extends BaseTest {
 
     @Story(value = "Попытка авторизации с невалидными данными")
     @Test(priority = 1, dataProvider = "Invalid data for login", dataProviderClass = LoginDataProviders.class)
-    public void checkLoginWithInvalidData(String username, String password, String description) {
+    public void checkLoginWithInvalidData(String username, String password, String description, ITestContext context) {
+        context.setAttribute("driver", driver);
         loginPage.enterCredentialsIntoFields(username, password, description)
                 .clickLoginButton()
                 .incorrectCredentialsMessageAppears();
@@ -37,8 +37,7 @@ public class AuthorizationTest extends BaseTest {
     }
 
     @AfterMethod
-    public void takeScreenshotIfFailedAndClearAllFieldsOrLogout(ITestResult result) {
-        takeScreenshotIfTestFailed(result);
+    public void clearAllFieldsOrLogout() {
         loginPage.clearAllFieldsOrLogout();
     }
 }
