@@ -37,8 +37,7 @@ public class HomePageMainElementsTest extends BaseTest {
     @Story(value = "Навигация в блоке популярных курсов")
     @Severity(value = SeverityLevel.NORMAL)
     @Test(priority = 2)
-    public void checkPopularCourses(ITestContext context) {
-        context.setAttribute("driver", driver);
+    public void checkPopularCourses() {
         homePage.checkPopularCoursesBlockNavigation();
     }
 

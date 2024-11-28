@@ -28,7 +28,6 @@ public class BaseTest {
         return driver;
     }
 
-
     @AfterClass
     public void close() {
         if (Boolean.parseBoolean(getProp("close_browser"))) {
