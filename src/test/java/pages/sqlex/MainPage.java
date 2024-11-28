@@ -10,13 +10,13 @@ import org.openqa.selenium.support.PageFactory;
 import pages.base.BasePage;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.Date;
-import java.util.StringTokenizer;
+import java.util.Set;
+
+import static util.PropertiesUtil.getProp;
 
 public class MainPage extends BasePage {
 
@@ -33,6 +33,7 @@ public class MainPage extends BasePage {
     @Step("Нажатие на кнопку 'Вход без регистрации'")
     public MainPage loginWithoutRegistration() {
         waitElementToBeVisible(loginWithoutRegButton).click();
+        waitElementToBeVisible(logoutButton);
         return this;
     }
 
@@ -42,49 +43,35 @@ public class MainPage extends BasePage {
         return this;
     }
 
+    @Step("Запись cookies в файл")
     public MainPage writeCookiesToFile() {
-        File file = new File("src/test/resources/cookies.data");
-        try {
-            file.delete();
-            file.createNewFile();
-            FileWriter fileWriter = new FileWriter(file);
-            BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-            for(Cookie cookie : driver.manage().getCookies()) {
-                bufferedWriter.write(cookie.getName() + ";" + cookie.getValue());
-                bufferedWriter.newLine();
+        Set<Cookie> cookies = driver.manage().getCookies();
+        File cookieFile = new File(getProp("cookies_file"));
+        try(FileWriter writer = new FileWriter(cookieFile)) {
+            for (Cookie cookie : cookies) {
+                writer.write(cookie.getName() + "=" + cookie.getValue() + "\n");
             }
-            bufferedWriter.close();
-            fileWriter.close();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return this;
     }
 
+    @Step("Чтение cookies из файла")
     public MainPage readCookiesFromFile() {
-        File file = new File("src/test/resources/cookies.data");
-        try {
-            String stringLine;
-            FileReader fileReader = new FileReader(file);
-            BufferedReader bufferedReader = new BufferedReader(fileReader);
-            while((stringLine = bufferedReader.readLine()) != null){
-                StringTokenizer token = new StringTokenizer(stringLine,";");
-                while(token.hasMoreTokens()){
-                    String name = token.nextToken();
-                    String value = token.nextToken();
-                    Cookie cookie = new Cookie(name,value);
-                    driver.manage().addCookie(cookie);
+        try (BufferedReader reader = new BufferedReader(new FileReader(getProp("cookies_file")))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split("=");
+                if (parts.length == 2) {
+                    String name = parts[0];
+                    String value = parts[1];
+                    driver.manage().addCookie(new Cookie(name, value));
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return this;
-    }
-
-    public MainPage deleteFileWithCookies() {
-        File file = new File("src/test/resources/cookies.data");
-        file.delete();
         return this;
     }
 }
