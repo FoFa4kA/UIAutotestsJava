@@ -19,7 +19,6 @@ public class HomePageMainElementsTest extends BaseTest {
         homePage.closeModal();
     }
 
-
     @Story(value = "Хэдер, навигационное меню, кнопка регистрации, список курсов")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
@@ -59,6 +58,14 @@ public class HomePageMainElementsTest extends BaseTest {
     @Severity(value = SeverityLevel.CRITICAL)
     @Test(priority = 4)
     public void checkGoToPageViaNavMenu() {
+        homePage.goToPageViaNavBar()
+                .checkUrlAndTitle();
+    }
+
+    @Story(value = "Повторный переход на страницу через навигационное меню")
+    @Severity(value = SeverityLevel.CRITICAL)
+    @Test(priority = 5)
+    public void repeatGoToPageViaNavMenu() {
         homePage.goToPageViaNavBar()
                 .checkUrlAndTitle();
     }
