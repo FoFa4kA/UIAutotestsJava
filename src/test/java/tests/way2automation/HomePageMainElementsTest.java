@@ -4,7 +4,6 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
-import org.testng.ITestContext;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import tests.base.BaseTest;
