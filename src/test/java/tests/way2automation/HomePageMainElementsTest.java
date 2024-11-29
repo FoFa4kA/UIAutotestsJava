@@ -6,12 +6,14 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.way2automation.HomePage;
 import tests.base.BaseTest;
 
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Домашняя страница")
 public class HomePageMainElementsTest extends BaseTest {
+    protected HomePage homePage = new HomePage(driver, actions);
 
     @BeforeTest
     public void setUp() {
