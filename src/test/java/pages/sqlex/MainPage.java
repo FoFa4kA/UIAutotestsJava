@@ -29,7 +29,7 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    @Step("Нажатие на кнопку выхода")
+    @Step("Проверка перехода на главную")
     public MainPage assertMainPageRedirect() {
         assertFalse(elementIsVisible(loginWithoutRegButton));
         return this;
