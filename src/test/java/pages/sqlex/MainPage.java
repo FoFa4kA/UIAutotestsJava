@@ -9,7 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.base.BasePage;
 
-import static org.testng.Assert.assertNotEquals;
 import static util.JsExecutorActions.removeFocusFromElement;
 
 public class MainPage extends BasePage {
