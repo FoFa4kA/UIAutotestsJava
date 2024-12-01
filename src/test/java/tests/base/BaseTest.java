@@ -1,7 +1,6 @@
 package tests.base;
 
 import io.qameta.allure.Epic;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterClass;
@@ -16,7 +15,6 @@ import static util.PropertiesUtil.getProp;
 public class BaseTest {
     protected WebDriver driver = createDriver();
     protected Actions actions = new Actions(driver);
-    protected JavascriptExecutor jsEx = (JavascriptExecutor) driver;
 
     public WebDriver getDriver() {
         return driver;

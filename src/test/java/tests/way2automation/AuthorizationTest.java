@@ -13,7 +13,7 @@ import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Авторизация")
 public class AuthorizationTest extends BaseTest {
-    protected LoginPage loginPage = new LoginPage(driver, actions, jsEx);
+    protected LoginPage loginPage = new LoginPage(driver, actions);
 
     @BeforeTest
     public void setUp() {

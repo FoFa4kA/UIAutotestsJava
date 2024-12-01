@@ -13,7 +13,7 @@ import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Домашняя страница")
 public class HomePageMainElementsTest extends BaseTest {
-    protected HomePage homePage = new HomePage(driver, actions, jsEx);
+    protected HomePage homePage = new HomePage(driver, actions);
 
     @BeforeTest
     public void setUp() {

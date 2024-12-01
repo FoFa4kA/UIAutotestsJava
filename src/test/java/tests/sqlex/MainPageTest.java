@@ -4,6 +4,7 @@ import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pages.sqlex.MainPage;
@@ -11,14 +12,15 @@ import tests.base.BaseTest;
 
 import java.io.File;
 
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotEquals;
 import static util.CookiesManager.readCookiesFromFile;
 import static util.CookiesManager.writeCookiesToFile;
-import static util.JsExecutorActions.checkPageScroll;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "SQL-ex - Главная страница")
 public class MainPageTest extends BaseTest {
-    protected MainPage mainPage = new MainPage(driver, actions, jsEx);
+    protected MainPage mainPage = new MainPage(driver, actions);
 
     @BeforeTest
     public void setUp() {
@@ -26,10 +28,13 @@ public class MainPageTest extends BaseTest {
     }
 
     @Story("Тест снятия фокуса с поля воода и наличия скролла на странице")
+    @Severity(SeverityLevel.NORMAL)
     @Test
     public void testInputFocusDisableAndPageScroll() {
-            mainPage.checkLoginInputInactive();
-            checkPageScroll(jsEx);
+        JavascriptExecutor jsEx = (JavascriptExecutor) driver;
+        mainPage.checkLoginInputInactive(jsEx);
+        assertNotEquals(jsEx.executeScript("return document.body.offsetHeight"),
+                jsEx.executeScript("return window.innerHeight"));
     }
 
     @Story("Авторизация и запись cookies в файл, чтение cookies из файла при повторном прогоне")
@@ -43,6 +48,6 @@ public class MainPageTest extends BaseTest {
             mainPage.loginWithoutRegistration();
             writeCookiesToFile(driver);
         }
-        mainPage.assertMainPageRedirect();
+        assertFalse(mainPage.elementIsVisible(mainPage.getLoginWithoutRegButton()));
     }
 }
