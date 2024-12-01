@@ -49,6 +49,6 @@ public class MainPageTest extends BaseTest {
             mainPage.loginWithoutRegistration();
             writeCookiesToFile(driver);
         }
-        assertFalse(mainPage.elementIsVisible(mainPage.getLoginWithoutRegButton()));
+        mainPage.waitElementToBeVisible(mainPage.getLogoutButton());
     }
 }

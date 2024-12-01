@@ -35,6 +35,10 @@ public class MainPage extends BasePage {
         return loginInput;
     }
 
+    public WebElement getLogoutButton() {
+        return logoutButton;
+    }
+
     @Step("Нажатие на кнопку 'Вход без регистрации'")
     public MainPage loginWithoutRegistration() {
         waitElementToBeVisible(loginWithoutRegButton).click();
