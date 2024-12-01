@@ -32,7 +32,8 @@ public class MainPageTest extends BaseTest {
     @Test
     public void testInputFocusDisableAndPageScroll() {
         JavascriptExecutor jsEx = (JavascriptExecutor) driver;
-        mainPage.checkLoginInputInactive(jsEx);
+        mainPage.removeFocusFromLoginInput(jsEx);
+        assertNotEquals(mainPage.getLoginInput(), driver.switchTo().activeElement());
         assertNotEquals(jsEx.executeScript("return document.body.offsetHeight"),
                 jsEx.executeScript("return window.innerHeight"));
     }
