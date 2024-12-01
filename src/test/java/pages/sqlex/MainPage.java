@@ -15,8 +15,8 @@ import static util.JsExecutorActions.removeFocusFromElement;
 
 public class MainPage extends BasePage {
 
-    public MainPage(WebDriver driver, Actions actions, JavascriptExecutor js) {
-        super(driver, actions, js);
+    public MainPage(WebDriver driver, Actions actions) {
+        super(driver, actions);
         PageFactory.initElements(driver, this);
     }
 
@@ -29,6 +29,10 @@ public class MainPage extends BasePage {
     @FindBy(css = "[rel='nofollow']")
     private WebElement liveInternetLink;
 
+    public WebElement getLoginWithoutRegButton() {
+        return loginWithoutRegButton;
+    }
+
     @Step("Нажатие на кнопку 'Вход без регистрации'")
     public MainPage loginWithoutRegistration() {
         waitElementToBeVisible(loginWithoutRegButton).click();
@@ -36,15 +40,15 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    @Step("Проверка перехода на главную")
+    @Step("Проверка наличичия на странице кнопки входа без регистрации")
     public MainPage assertMainPageRedirect() {
         assertFalse(elementIsVisible(loginWithoutRegButton));
         return this;
     }
 
     @Step("Проверка неактивности поля логина после снятия с него фокуса")
-    public MainPage checkLoginInputInactive() {
-        removeFocusFromElement(js, loginInput);
+    public MainPage checkLoginInputInactive(JavascriptExecutor jsEx) {
+        removeFocusFromElement(jsEx, loginInput);
         assertNotEquals(loginInput, driver.switchTo().activeElement());
         return this;
     }
