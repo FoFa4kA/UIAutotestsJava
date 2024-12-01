@@ -1,5 +1,6 @@
 package pages.base;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,10 +15,12 @@ import static util.PropertiesUtil.getProp;
 public class BasePage {
     protected WebDriver driver;
     protected Actions actions;
+    protected JavascriptExecutor js;
 
-    public BasePage(WebDriver driver, Actions actions) {
+    public BasePage(WebDriver driver, Actions actions, JavascriptExecutor js) {
         this.driver = driver;
         this.actions = actions;
+        this.js = (JavascriptExecutor) driver;
     }
 
     public WebElement waitElementToBeVisible(WebElement element) {

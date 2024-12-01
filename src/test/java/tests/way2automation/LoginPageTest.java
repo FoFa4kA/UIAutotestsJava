@@ -14,7 +14,7 @@ import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Страница авторизации")
 public class LoginPageTest extends BaseTest {
-    protected LoginPage loginPage = new LoginPage(driver, actions);
+    protected LoginPage loginPage = new LoginPage(driver, actions, jsEx);
 
     @BeforeTest
     public void setUp() {

@@ -13,20 +13,28 @@ import java.io.File;
 
 import static util.CookiesManager.readCookiesFromFile;
 import static util.CookiesManager.writeCookiesToFile;
+import static util.JsExecutorActions.checkPageScroll;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "SQL-ex - Главная страница")
 public class MainPageTest extends BaseTest {
-    protected MainPage mainPage = new MainPage(driver, actions);
+    protected MainPage mainPage = new MainPage(driver, actions, jsEx);
 
     @BeforeTest
     public void setUp() {
         driver.get(getProp("sqlex_page"));
     }
 
+    @Story("Тест снятия фокуса с поля воода и наличия скролла на странице")
+    @Test
+    public void testInputFocusDisableAndPageScroll() {
+            mainPage.checkLoginInputInactive();
+            checkPageScroll(jsEx);
+    }
+
     @Story("Авторизация и запись cookies в файл, чтение cookies из файла при повторном прогоне")
     @Severity(value = SeverityLevel.CRITICAL)
-    @Test
+    @Test(priority = 1)
     public void loginAndWriteCookiesOrReadCookiesForLogin() {
         if (new File(getProp("cookies_file")).exists()) {
             readCookiesFromFile(driver);

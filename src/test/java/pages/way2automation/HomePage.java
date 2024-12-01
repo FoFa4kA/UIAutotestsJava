@@ -1,6 +1,7 @@
 package pages.way2automation;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
@@ -14,8 +15,8 @@ import static org.testng.AssertJUnit.assertEquals;
 
 public class HomePage extends BasePage {
 
-    public HomePage(WebDriver driver, Actions actions) {
-        super(driver, actions);
+    public HomePage(WebDriver driver, Actions actions, JavascriptExecutor js) {
+        super(driver, actions, js);
         PageFactory.initElements(driver, this);
     }
 
@@ -157,6 +158,6 @@ public class HomePage extends BasePage {
     public PracticeSite2Page goToPageViaNavBar() {
         moveToElement(resourcesInNavBar);
         waitElementToBeVisible(site2InResources).click();
-        return new PracticeSite2Page(driver, actions);
+        return new PracticeSite2Page(driver, actions, js);
     }
 }

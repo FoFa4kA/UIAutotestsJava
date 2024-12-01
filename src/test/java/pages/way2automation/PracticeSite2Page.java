@@ -1,6 +1,7 @@
 package pages.way2automation;
 
 import io.qameta.allure.Step;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -11,8 +12,8 @@ import static util.PropertiesUtil.getProp;
 
 public class PracticeSite2Page extends BasePage {
 
-    public PracticeSite2Page(WebDriver driver, Actions actions) {
-        super(driver, actions);
+    public PracticeSite2Page(WebDriver driver, Actions actions, JavascriptExecutor js) {
+        super(driver, actions, js);
         PageFactory.initElements(driver, this);
     }
 
