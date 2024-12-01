@@ -7,12 +7,14 @@ import io.qameta.allure.Story;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.way2automation.LoginPage;
 import tests.base.BaseTest;
 
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Страница авторизации")
 public class LoginPageTest extends BaseTest {
+    protected LoginPage loginPage = new LoginPage(driver, actions);
 
     @BeforeTest
     public void setUp() {

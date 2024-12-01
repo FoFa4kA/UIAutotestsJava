@@ -6,14 +6,18 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Story;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
+import pages.sqlex.MainPage;
 import tests.base.BaseTest;
 
 import java.io.File;
 
+import static util.CookiesManager.readCookiesFromFile;
+import static util.CookiesManager.writeCookiesToFile;
 import static util.PropertiesUtil.getProp;
 
-@Feature(value = "Авторизация с использованием cookies")
+@Feature(value = "SQL-ex - Главная страница")
 public class MainPageTest extends BaseTest {
+    protected MainPage mainPage = new MainPage(driver, actions);
 
     @BeforeTest
     public void setUp() {
@@ -22,15 +26,15 @@ public class MainPageTest extends BaseTest {
 
     @Story("Авторизация и запись cookies в файл, чтение cookies из файла при повторном прогоне")
     @Severity(value = SeverityLevel.CRITICAL)
-    @Test()
+    @Test
     public void loginAndWriteCookiesOrReadCookiesForLogin() {
         if (new File(getProp("cookies_file")).exists()) {
-            mainPage.readCookiesFromFile();
+            readCookiesFromFile(driver);
             driver.navigate().refresh();
-            mainPage.logout();
         } else {
-            mainPage.loginWithoutRegistration()
-                    .writeCookiesToFile();
+            mainPage.loginWithoutRegistration();
+            writeCookiesToFile(driver);
         }
+        mainPage.assertMainPageRedirect();
     }
 }
