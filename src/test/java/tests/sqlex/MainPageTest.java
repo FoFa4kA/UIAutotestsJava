@@ -12,7 +12,6 @@ import tests.base.BaseTest;
 
 import java.io.File;
 
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotEquals;
 import static util.CookiesManager.readCookiesFromFile;
 import static util.CookiesManager.writeCookiesToFile;
@@ -32,7 +31,8 @@ public class MainPageTest extends BaseTest {
     @Test
     public void testInputFocusDisableAndPageScroll() {
         JavascriptExecutor jsEx = (JavascriptExecutor) driver;
-        mainPage.checkLoginInputInactive(jsEx);
+        mainPage.removeFocusFromLoginInput(jsEx);
+        assertNotEquals(mainPage.getLoginInput(), driver.switchTo().activeElement());
         assertNotEquals(jsEx.executeScript("return document.body.offsetHeight"),
                 jsEx.executeScript("return window.innerHeight"));
     }
@@ -48,6 +48,6 @@ public class MainPageTest extends BaseTest {
             mainPage.loginWithoutRegistration();
             writeCookiesToFile(driver);
         }
-        assertFalse(mainPage.elementIsVisible(mainPage.getLoginWithoutRegButton()));
+        mainPage.waitElementToBeVisible(mainPage.getLogoutButton());
     }
 }

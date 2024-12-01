@@ -9,8 +9,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import pages.base.BasePage;
 
-import static org.testng.Assert.assertNotEquals;
-import static org.testng.AssertJUnit.assertFalse;
 import static util.JsExecutorActions.removeFocusFromElement;
 
 public class MainPage extends BasePage {
@@ -33,6 +31,14 @@ public class MainPage extends BasePage {
         return loginWithoutRegButton;
     }
 
+    public WebElement getLoginInput() {
+        return loginInput;
+    }
+
+    public WebElement getLogoutButton() {
+        return logoutButton;
+    }
+
     @Step("Нажатие на кнопку 'Вход без регистрации'")
     public MainPage loginWithoutRegistration() {
         waitElementToBeVisible(loginWithoutRegButton).click();
@@ -40,16 +46,9 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    @Step("Проверка наличичия на странице кнопки входа без регистрации")
-    public MainPage assertMainPageRedirect() {
-        assertFalse(elementIsVisible(loginWithoutRegButton));
-        return this;
-    }
-
-    @Step("Проверка неактивности поля логина после снятия с него фокуса")
-    public MainPage checkLoginInputInactive(JavascriptExecutor jsEx) {
+    @Step("Cнятие фокуса с поля ввода логина")
+    public MainPage removeFocusFromLoginInput(JavascriptExecutor jsEx) {
         removeFocusFromElement(jsEx, loginInput);
-        assertNotEquals(loginInput, driver.switchTo().activeElement());
         return this;
     }
 }
