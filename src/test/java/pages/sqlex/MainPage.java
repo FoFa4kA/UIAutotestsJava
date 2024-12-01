@@ -43,7 +43,7 @@ public class MainPage extends BasePage {
         return this;
     }
 
-    @Step("Проверка неактивности поля логина после снятия с него фокуса")
+    @Step("Cнятие фокуса с поля ввода логина")
     public MainPage removeFocusFromLoginInput(JavascriptExecutor jsEx) {
         removeFocusFromElement(jsEx, loginInput);
         return this;
