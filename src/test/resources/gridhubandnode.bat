@@ -1,0 +1,2 @@
+cmd /C start java -jar C:\Users\FoFa4kA\IdeaProjects\UIAutotestJava\src\test\resources\selenium-server-4.27.0.jar hub
+cmd /C start java -jar C:\Users\FoFa4kA\IdeaProjects\UIAutotestJava\src\test\resources\selenium-server-4.27.0.jar node
