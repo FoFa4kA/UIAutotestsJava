@@ -12,7 +12,6 @@ import tests.base.BaseTest;
 
 import java.io.File;
 
-import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotEquals;
 import static util.CookiesManager.readCookiesFromFile;
 import static util.CookiesManager.writeCookiesToFile;
