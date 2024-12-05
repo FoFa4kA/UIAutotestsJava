@@ -11,6 +11,7 @@
     <properties>
         <aspectj.version>1.9.22.1</aspectj.version>
         <junit.version>5.11.3</junit.version>
+        <testng.conf>testngparallel.xml</testng.conf>
     </properties>
 
     <dependencies>
@@ -60,7 +61,7 @@
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
                     </systemPropertyVariables>
                     <suiteXmlFiles>
-                        <suiteXmlFile>testngparallel.xml</suiteXmlFile>
+                        <suiteXmlFile>${testng.conf}</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
                 <dependencies>
@@ -90,4 +91,18 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>failed-tests-run</id>
+            <properties>
+                <testng.conf>test-output/testng-failed.xml</testng.conf>
+            </properties>
+            <activation>
+                <file>
+                    <exists>test-output/testng-failed.xml</exists>
+                </file>
+            </activation>
+        </profile>
+    </profiles>
 </project>

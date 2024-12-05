@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="4" parallel="classes" name="Failed suite [UIAutotestJava]" guice-stage="DEVELOPMENT">
+  <test thread-count="4" parallel="classes" name="Test way2automation and sql-ex pages(failed)">
+    <classes>
+      <class name="tests.way2automation.HomePageMainElementsTest">
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="close"/>
+          <include name="setUp"/>
+          <include name="repeatGoToPageViaNavMenu"/>
+          <include name="checkPopularCourses"/>
+        </methods>
+      </class> <!-- tests.way2automation.HomePageMainElementsTest -->
+      <class name="tests.way2automation.AuthorizationTest">
+        <methods>
+          <include name="beforeSuite"/>
+          <include name="close"/>
+          <include name="clearAllFieldsOrLogout"/>
+          <include name="checkLoginWithInvalidData" invocation-numbers="0"/>
+          <include name="setUp"/>
+        </methods>
+      </class> <!-- tests.way2automation.AuthorizationTest -->
+    </classes>
+  </test> <!-- Test way2automation and sql-ex pages(failed) -->
+</suite> <!-- Failed suite [UIAutotestJava] -->
