@@ -9,7 +9,6 @@
           <include name="close"/>
           <include name="setUp"/>
           <include name="repeatGoToPageViaNavMenu"/>
-          <include name="checkPopularCourses"/>
         </methods>
       </class> <!-- tests.way2automation.HomePageMainElementsTest -->
       <class name="tests.way2automation.AuthorizationTest">
