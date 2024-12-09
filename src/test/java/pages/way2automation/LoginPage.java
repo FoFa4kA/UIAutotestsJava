@@ -30,7 +30,7 @@ public class LoginPage extends BasePage {
     private WebElement disabledLoginButton;
     @FindBy(css = ".btn")
     private WebElement loginButton;
-    @FindBy(xpath = "//p[text()=\"You're logged in!!\"]")
+    @FindBy(xpath = "//p[text()='You're logged in!!']")
     private WebElement successLoggedInMessage;
     @FindBy(css = ".alert-danger")
     private WebElement incorrectCredentialsMessage;
