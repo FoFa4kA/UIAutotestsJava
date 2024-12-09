@@ -32,8 +32,9 @@ public class DriverFactory {
         System.setProperty(webDriverName, getProp(webDriverProp));
     }
 
-    private static WebDriver createRemoteWebDriver(String browser, String platform) {
+    private static WebDriver createRemoteWebDriver(String browser) {
         WebDriver remoteWebDriver = null;
+        String platform = getProp("os");
         String gridHubUrl = getProp("grid_hub");
 
         try {
@@ -86,10 +87,9 @@ public class DriverFactory {
 
     public static WebDriver createDriver() {
         String browser = getProp("browser");
-        String platform = getProp("os");
 
         WebDriver driver = Boolean.parseBoolean(getProp("remote"))
-                ? createRemoteWebDriver(browser, platform)
+                ? createRemoteWebDriver(browser)
                 : createLocalWebDriver(browser);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(getProp("implicit_wait"))));
         return driver;
