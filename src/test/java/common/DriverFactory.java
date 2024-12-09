@@ -16,53 +16,81 @@ import java.time.Duration;
 import static util.PropertiesUtil.getProp;
 
 public class DriverFactory {
+    private static final String BROWSER_ERROR_MESSAGE = "Unexpected browser name: ";
 
-    public static WebDriver createDriver() {
-        WebDriver driver = null;
-        String browser = getProp("browser");
+    private static void setSysPropWebDriver(String browser) {
+        String webDriverName;
+        String webDriverProp;
 
-        if (Boolean.parseBoolean(getProp("remote"))) {
-            try {
-                switch (browser) {
-                    case "chrome":
-                        ChromeOptions chromeOptions = new ChromeOptions();
-                        chromeOptions.setPlatformName("Windows 10");
-                        driver = new RemoteWebDriver(new URL(getProp("grid_hub")), chromeOptions);
-                        break;
-                    case "firefox":
-                        FirefoxOptions firefoxOptions = new FirefoxOptions();
-                        firefoxOptions.setPlatformName("Windows 10");
-                        driver = new RemoteWebDriver(new URL(getProp("grid_hub")), firefoxOptions);
-                        break;
-                    case "edge":
-                        EdgeOptions edgeOptions = new EdgeOptions();
-                        edgeOptions.setPlatformName("Windows 10");
-                        driver = new RemoteWebDriver(new URL(getProp("grid_hub")), edgeOptions);
-                        break;
-                    default:
-                        System.out.println("Unsupported browser or invalid browser name: " + browser);
-                }
-            } catch (MalformedURLException e) {
-                throw new RuntimeException(e);
-            }
+        if (browser.equals("firefox")) {
+            webDriverName = "webdriver.gecko.driver";
+            webDriverProp = "geckodriver";
         } else {
+            webDriverName = "webdriver." + browser + ".driver";
+            webDriverProp = browser + "driver";
+        }
+        System.setProperty(webDriverName, getProp(webDriverProp));
+    }
+
+    private static WebDriver createRemoteWebDriver(String browser, String platform) {
+        WebDriver remoteWebDriver = null;
+        String gridHubUrl = getProp("grid_hub");
+
+        try {
             switch (browser) {
                 case "chrome":
-                    System.setProperty("webdriver.chrome.driver", getProp("chromedriver"));
-                    driver = new ChromeDriver();
+                    ChromeOptions chromeOptions = new ChromeOptions();
+                    chromeOptions.setPlatformName(platform);
+                    remoteWebDriver = new RemoteWebDriver(new URL(gridHubUrl), chromeOptions);
                     break;
                 case "firefox":
-                    System.setProperty("webdriver.gecko.driver", getProp("geckodriver"));
-                    driver = new FirefoxDriver();
+                    FirefoxOptions firefoxOptions = new FirefoxOptions();
+                    firefoxOptions.setPlatformName(platform);
+                    remoteWebDriver = new RemoteWebDriver(new URL(gridHubUrl), firefoxOptions);
                     break;
                 case "edge":
-                    System.setProperty("webdriver.edge.driver", getProp("edgedriver"));
-                    driver = new EdgeDriver();
+                    EdgeOptions edgeOptions = new EdgeOptions();
+                    edgeOptions.setPlatformName(platform);
+                    remoteWebDriver = new RemoteWebDriver(new URL(gridHubUrl), edgeOptions);
                     break;
                 default:
-                    System.out.println("Unsupported browser or invalid browser name: " + browser);
+                    throw new IllegalStateException(BROWSER_ERROR_MESSAGE + browser);
             }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException(e);
         }
+        return remoteWebDriver;
+    }
+
+    private static WebDriver createLocalWebDriver(String browser) {
+        WebDriver localWebDriver = null;
+
+        switch (browser) {
+            case "chrome":
+                setSysPropWebDriver(browser);
+                localWebDriver = new ChromeDriver();
+                break;
+            case "firefox":
+                setSysPropWebDriver(browser);
+                localWebDriver = new FirefoxDriver();
+                break;
+            case "edge":
+                setSysPropWebDriver(browser);
+                localWebDriver = new EdgeDriver();
+                break;
+            default:
+                throw new IllegalStateException(BROWSER_ERROR_MESSAGE + browser);
+        }
+        return localWebDriver;
+    }
+
+    public static WebDriver createDriver() {
+        String browser = getProp("browser");
+        String platform = getProp("os");
+
+        WebDriver driver = Boolean.parseBoolean(getProp("remote"))
+                ? createRemoteWebDriver(browser, platform)
+                : createLocalWebDriver(browser);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(getProp("implicit_wait"))));
         return driver;
     }
