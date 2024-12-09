@@ -13,7 +13,7 @@ import util.TestRetry;
 
 import java.util.Arrays;
 
-import static common.CommonActions.createDriver;
+import static common.DriverFactory.createDriver;
 import static util.PropertiesUtil.getProp;
 
 @Epic(value = "UI Тесты")
