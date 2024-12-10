@@ -56,4 +56,9 @@ public class BasePage {
                 .perform();
         return element;
     }
+
+    public void dragNDropElement(WebElement draggableElement, WebElement droppableElement) {
+        actions.dragAndDrop(draggableElement, droppableElement)
+                .perform();
+    }
 }
