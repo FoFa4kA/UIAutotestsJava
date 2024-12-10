@@ -33,7 +33,6 @@ public class DriverFactory {
     }
 
     private static WebDriver createRemoteWebDriver(String browser) {
-        WebDriver remoteWebDriver = null;
         String platform = getProp("os");
         String gridHubUrl = getProp("grid_hub");
 
@@ -42,47 +41,37 @@ public class DriverFactory {
                 case "chrome":
                     ChromeOptions chromeOptions = new ChromeOptions();
                     chromeOptions.setPlatformName(platform);
-                    remoteWebDriver = new RemoteWebDriver(new URL(gridHubUrl), chromeOptions);
-                    break;
+                    return new RemoteWebDriver(new URL(gridHubUrl), chromeOptions);
                 case "firefox":
                     FirefoxOptions firefoxOptions = new FirefoxOptions();
                     firefoxOptions.setPlatformName(platform);
-                    remoteWebDriver = new RemoteWebDriver(new URL(gridHubUrl), firefoxOptions);
-                    break;
+                    return new RemoteWebDriver(new URL(gridHubUrl), firefoxOptions);
                 case "edge":
                     EdgeOptions edgeOptions = new EdgeOptions();
                     edgeOptions.setPlatformName(platform);
-                    remoteWebDriver = new RemoteWebDriver(new URL(gridHubUrl), edgeOptions);
-                    break;
+                    return new RemoteWebDriver(new URL(gridHubUrl), edgeOptions);
                 default:
                     throw new IllegalStateException(BROWSER_ERROR_MESSAGE + browser);
             }
         } catch (MalformedURLException e) {
             throw new RuntimeException(e);
         }
-        return remoteWebDriver;
     }
 
     private static WebDriver createLocalWebDriver(String browser) {
-        WebDriver localWebDriver = null;
-
         switch (browser) {
             case "chrome":
                 setSysPropWebDriver(browser);
-                localWebDriver = new ChromeDriver();
-                break;
+                return new ChromeDriver();
             case "firefox":
                 setSysPropWebDriver(browser);
-                localWebDriver = new FirefoxDriver();
-                break;
+                return new FirefoxDriver();
             case "edge":
                 setSysPropWebDriver(browser);
-                localWebDriver = new EdgeDriver();
-                break;
+                return new EdgeDriver();
             default:
                 throw new IllegalStateException(BROWSER_ERROR_MESSAGE + browser);
         }
-        return localWebDriver;
     }
 
     public static WebDriver createDriver() {
