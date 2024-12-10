@@ -26,10 +26,8 @@ public class DroppableTest extends BaseTest {
     @Severity(SeverityLevel.NORMAL)
     @Test
     public void testDragNDropElement() {
-        String successfullyDropped = "Dropped!";
-
         driver.switchTo().frame(droppablePage.getExample1Tab1Frame());
         droppablePage.dragElementAndDropItToTarget();
-        assertEquals(successfullyDropped, droppablePage.getDroppableElement().findElement(By.tagName("p")).getText());
+        assertEquals("Dropped!", droppablePage.getDroppableElement().findElement(By.tagName("p")).getText());
     }
 }
