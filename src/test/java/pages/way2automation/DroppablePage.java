@@ -21,21 +21,19 @@ public class DroppablePage extends BasePage {
     WebElement draggableElement;
     @FindBy(css = "#droppable")
     WebElement droppableElement;
-    @FindBy(css = "#droppable p")
-    WebElement droppableElementTitle;
 
     public WebElement getExample1Tab1Frame() {
         return example1Tab1Frame;
     }
 
-    public WebElement getGetDroppableElementTitle() {
-        return droppableElementTitle;
+    public WebElement getDroppableElement() {
+        return droppableElement;
     }
 
     @Step("Перетаскивание одного элемента в другой элемент")
-    public DroppablePage drugElementAndDropItToTarget() {
+    public DroppablePage dragElementAndDropItToTarget() {
         waitElementToBeVisible(draggableElement);
-        drugNDropElement(draggableElement, droppableElement);
+        dragNDropElement(draggableElement, droppableElement);
         return this;
     }
 }
