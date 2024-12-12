@@ -19,9 +19,9 @@ public class TabsPage extends BasePage {
     }
 
     @FindBy(css = "[src='frames-windows/defult1.html']")
-    WebElement windowsFrame;
+    private WebElement windowsFrame;
     @FindBy(css = "[target='_blank']")
-    WebElement newTabLink;
+    private WebElement newTabLink;
 
     public WebElement getWindowsFrame() {
         return windowsFrame;
