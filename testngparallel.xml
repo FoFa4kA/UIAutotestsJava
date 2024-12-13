@@ -8,6 +8,7 @@
             <class name="tests.way2automation.AuthorizationTest"/>
             <class name="tests.way2automation.DroppableTest"></class>
             <class name="tests.way2automation.TabsTest"></class>
+            <class name="tests.way2automation.AlertsTest"></class>
             <class name="tests.sqlex.MainPageTest"/>
         </classes>
     </test>
