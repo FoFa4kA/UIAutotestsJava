@@ -65,7 +65,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Проверка ввод во все поля ввода и активация кпопки 'Login'")
+    @Step("Проверка ввода во все поля ввода и активация кпопки 'Login'")
     public LoginPage checkInputsAndLoginButtonDisabled() {
         waitElementToBeVisible(disabledLoginButton);
         enterCredentialsIntoFields("username", "password", "user_desc");
