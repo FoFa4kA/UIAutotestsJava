@@ -10,6 +10,7 @@
             <class name="tests.way2automation.TabsTest"></class>
             <class name="tests.way2automation.AlertsTest"></class>
             <class name="tests.sqlex.MainPageTest"/>
+            <class name="tests.httpwatch.BasicAuthTest"></class>
         </classes>
     </test>
 </suite>
