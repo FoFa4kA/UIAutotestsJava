@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import pages.httpwatch.BasicAuthPage;
 import tests.base.BaseTest;
 
+import static org.testng.AssertJUnit.assertTrue;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Базовая аутентификация")
@@ -24,7 +25,7 @@ public class BasicAuthTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     @Test
     public void testBasicAuth() {
-        basicAuthPage.invokeBasicAuthEnterCredentialsAndAcceptLogin()
-                .waitElementToBeVisible(basicAuthPage.getBasicAuthImage());
+        basicAuthPage.invokeBasicAuthEnterCredentialsAndAcceptLogin();
+        assertTrue(basicAuthPage.elementIsVisible(basicAuthPage.getBasicAuthImage()));
     }
 }
