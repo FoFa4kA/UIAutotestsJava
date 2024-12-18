@@ -37,6 +37,10 @@ public class LoginPage extends BasePage {
     @FindBy(css = "a[href='#/login']")
     private WebElement logoutButton;
 
+    public WebElement getDisabledLoginButton() {
+        return disabledLoginButton;
+    }
+
     @Step("Нажатие на активную кнопку 'Login'")
     public LoginPage clickLoginButton() {
         loginButton.click();
