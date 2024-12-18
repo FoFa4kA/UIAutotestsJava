@@ -33,7 +33,6 @@ public class BasePage {
 
     public boolean elementIsVisible(WebElement element) {
         try {
-            waitElementToBeVisible(element);
             return element.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;

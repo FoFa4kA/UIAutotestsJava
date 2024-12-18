@@ -25,7 +25,8 @@ public class BasicAuthTest extends BaseTest {
     @Severity(SeverityLevel.BLOCKER)
     @Test
     public void testBasicAuth() {
-        basicAuthPage.invokeBasicAuthEnterCredentialsAndAcceptLogin();
+        basicAuthPage.invokeBasicAuthEnterCredentialsAndAcceptLogin()
+                .waitElementToBeVisible(basicAuthPage.getBasicAuthImage());
         assertTrue(basicAuthPage.elementIsVisible(basicAuthPage.getBasicAuthImage()));
     }
 }
