@@ -3,14 +3,14 @@
 <suite name="UIAutotestJava" thread-count="4" parallel="classes">
     <test name="Test way2automation and sql-ex pages">
         <classes>
-            <class name="tests.way2automation.HomePageMainElementsTest"/>
-            <class name="tests.way2automation.LoginPageTest"/>
-            <class name="tests.way2automation.AuthorizationTest"/>
-            <class name="tests.way2automation.DroppableTest"></class>
-            <class name="tests.way2automation.TabsTest"></class>
-            <class name="tests.way2automation.AlertsTest"></class>
-            <class name="tests.sqlex.MainPageTest"/>
-            <class name="tests.httpwatch.BasicAuthTest"></class>
+            <class name="tests.way2automation.HomePageMainElementsTests"/>
+            <class name="tests.way2automation.LoginPageTests"/>
+            <class name="tests.way2automation.AuthorizationTests"/>
+            <class name="tests.way2automation.DroppableTests"></class>
+            <class name="tests.way2automation.TabsTests"></class>
+            <class name="tests.way2automation.AlertsTests"></class>
+            <class name="tests.sqlex.MainPageTests"/>
+            <class name="tests.httpwatch.BasicAuthTests"></class>
         </classes>
     </test>
 </suite>

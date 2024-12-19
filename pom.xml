@@ -11,6 +11,7 @@
     <properties>
         <aspectj.version>1.9.22.1</aspectj.version>
         <junit.version>5.11.3</junit.version>
+        <cucumber.version>7.20.1</cucumber.version>
         <testng.conf>testngparallel.xml</testng.conf>
     </properties>
 
@@ -43,6 +44,25 @@
             <groupId>ru.yandex.qatools.ashot</groupId>
             <artifactId>ashot</artifactId>
             <version>1.5.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

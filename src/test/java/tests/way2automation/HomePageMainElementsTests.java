@@ -12,7 +12,7 @@ import tests.base.BaseTest;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Домашняя страница")
-public class HomePageMainElementsTest extends BaseTest {
+public class HomePageMainElementsTests extends BaseTest {
     protected HomePage homePage = new HomePage(driver, actions);
 
     @BeforeTest
@@ -24,42 +24,42 @@ public class HomePageMainElementsTest extends BaseTest {
     @Story(value = "Хэдер, навигационное меню, кнопка регистрации, список курсов")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
-    public void checkPageOpen() {
+    public void checkPageOpenTest() {
         homePage.checkPageOpenAndMainElements();
     }
 
     @Story(value = "Контакты в хэдере")
     @Severity(value = SeverityLevel.NORMAL)
     @Test(priority = 1)
-    public void checkHeader() {
+    public void checkHeaderTest() {
         homePage.checkHeaderWithContacts();
     }
 
     @Story(value = "Навигация в блоке популярных курсов")
     @Severity(value = SeverityLevel.NORMAL)
     @Test(priority = 2)
-    public void checkPopularCourses() {
+    public void checkPopularCoursesTest() {
         homePage.checkPopularCoursesBlockNavigation();
     }
 
     @Story(value = "Контакты в футере")
     @Severity(value = SeverityLevel.NORMAL)
     @Test(priority = 3)
-    public void checkFooter() {
+    public void checkFooterTest() {
         homePage.checkFooterWithContacts();
     }
 
     @Story(value = "Навигационное меню после скрола страницы вниз")
     @Severity(value = SeverityLevel.MINOR)
     @Test(priority = 2)
-    public void checkNavigationMenuAfterScroll() {
+    public void checkNavigationMenuAfterScrollTest() {
         homePage.checkNavBarAfterScroll();
     }
 
     @Story(value = "Переход на другую страницу через навигационное меню")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test(priority = 4)
-    public void checkGoToPageViaNavMenu() {
+    public void checkGoToPageViaNavMenuTest() {
         homePage.goToPageViaNavBar()
                 .checkUrlAndTitle();
     }
@@ -67,7 +67,7 @@ public class HomePageMainElementsTest extends BaseTest {
     @Story(value = "Повторный переход на страницу через навигационное меню")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test(priority = 5)
-    public void repeatGoToPageViaNavMenu() {
+    public void repeatGoToPageViaNavMenuTest() {
         homePage.goToPageViaNavBar()
                 .checkUrlAndTitle();
     }

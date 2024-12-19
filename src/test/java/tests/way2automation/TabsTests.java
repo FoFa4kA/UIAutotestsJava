@@ -13,7 +13,7 @@ import static org.testng.AssertJUnit.assertEquals;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Действия с вкладками")
-public class TabsTest extends BaseTest {
+public class TabsTests extends BaseTest {
     protected TabsPage tabsPage = new TabsPage(driver, actions);
 
     @BeforeTest
@@ -24,7 +24,7 @@ public class TabsTest extends BaseTest {
     @Story(value = "Открытие и переключение вкладок")
     @Severity(SeverityLevel.CRITICAL)
     @Test
-    public void testOpenAndSwitchTabs() {
+    public void openAndSwitchTabsTest() {
         driver.switchTo().frame(tabsPage.getWindowsFrame());
         tabsPage.clickOnLinkAndSwitchToOpenedTab()
                 .clickOnLinkAndSwitchToOpenedTab();

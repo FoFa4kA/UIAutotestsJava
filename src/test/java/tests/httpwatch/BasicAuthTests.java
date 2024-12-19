@@ -13,7 +13,7 @@ import static org.testng.AssertJUnit.assertTrue;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Базовая аутентификация")
-public class BasicAuthTest extends BaseTest {
+public class BasicAuthTests extends BaseTest {
     protected BasicAuthPage basicAuthPage = new BasicAuthPage(driver, actions);
 
     @BeforeTest
@@ -24,8 +24,9 @@ public class BasicAuthTest extends BaseTest {
     @Story(value = "Проверка получения доступа через базовую аутентификацию")
     @Severity(SeverityLevel.BLOCKER)
     @Test
-    public void testBasicAuth() {
-        basicAuthPage.invokeBasicAuthEnterCredentialsAndAcceptLogin();
+    public void basicAuthTest() {
+        basicAuthPage.invokeBasicAuthEnterCredentialsAndAcceptLogin()
+                .waitElementToBeVisible(basicAuthPage.getBasicAuthImage());
         assertTrue(basicAuthPage.elementIsVisible(basicAuthPage.getBasicAuthImage()));
     }
 }

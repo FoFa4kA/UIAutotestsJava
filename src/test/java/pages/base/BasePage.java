@@ -11,7 +11,7 @@ import java.time.Duration;
 
 import static util.PropertiesUtil.getProp;
 
-public class BasePage {
+public abstract class BasePage {
     protected WebDriver driver;
     protected Actions actions;
 
@@ -33,7 +33,6 @@ public class BasePage {
 
     public boolean elementIsVisible(WebElement element) {
         try {
-            waitElementToBeVisible(element);
             return element.isDisplayed();
         } catch (NoSuchElementException e) {
             return false;

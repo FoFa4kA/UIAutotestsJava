@@ -37,6 +37,14 @@ public class LoginPage extends BasePage {
     @FindBy(css = "a[href='#/login']")
     private WebElement logoutButton;
 
+    public WebElement getLogoutButton() {
+        return logoutButton;
+    }
+
+    public WebElement getDisabledLoginButton() {
+        return disabledLoginButton;
+    }
+
     @Step("Нажатие на активную кнопку 'Login'")
     public LoginPage clickLoginButton() {
         loginButton.click();
@@ -65,7 +73,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    @Step("Проверка ввод во все поля ввода и активация кпопки 'Login'")
+    @Step("Проверка ввода во все поля ввода и активация кпопки 'Login'")
     public LoginPage checkInputsAndLoginButtonDisabled() {
         waitElementToBeVisible(disabledLoginButton);
         enterCredentialsIntoFields("username", "password", "user_desc");
