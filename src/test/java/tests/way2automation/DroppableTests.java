@@ -14,7 +14,7 @@ import static org.testng.AssertJUnit.assertEquals;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Перетаскивание элементов на странице")
-public class DroppableTest extends BaseTest {
+public class DroppableTests extends BaseTest {
     protected DroppablePage droppablePage = new DroppablePage(driver, actions);
 
     @BeforeTest
@@ -25,7 +25,7 @@ public class DroppableTest extends BaseTest {
     @Story(value = "Проверка перетаскивания одного элемента внутрь другого")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void testDragNDropElement() {
+    public void dragNDropElementTest() {
         driver.switchTo().frame(droppablePage.getExample1Tab1Frame());
         droppablePage.dragElementAndDropItToTarget();
         assertEquals("Dropped!", droppablePage.getDroppableElement().findElement(By.tagName("p")).getText());

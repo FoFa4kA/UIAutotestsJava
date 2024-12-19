@@ -18,7 +18,7 @@ import static util.PropertiesUtil.getProp;
 
 @Epic(value = "UI Тесты")
 @Listeners(TestListener.class)
-public class BaseTest {
+public abstract class BaseTest {
     protected WebDriver driver = createDriver();
     protected Actions actions = new Actions(driver);
 

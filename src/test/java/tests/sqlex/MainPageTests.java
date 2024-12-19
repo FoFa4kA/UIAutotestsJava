@@ -18,7 +18,7 @@ import static util.CookiesManager.writeCookiesToFile;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "SQL-ex - Главная страница")
-public class MainPageTest extends BaseTest {
+public class MainPageTests extends BaseTest {
     protected MainPage mainPage = new MainPage(driver, actions);
 
     @BeforeTest
@@ -29,7 +29,7 @@ public class MainPageTest extends BaseTest {
     @Story("Тест снятия фокуса с поля воода и наличия скролла на странице")
     @Severity(SeverityLevel.NORMAL)
     @Test
-    public void testInputFocusDisableAndPageScroll() {
+    public void inputFocusDisableAndPageScrollTest() {
         JavascriptExecutor jsEx = (JavascriptExecutor) driver;
         mainPage.removeFocusFromLoginInput(jsEx);
         assertNotEquals(mainPage.getLoginInput(), driver.switchTo().activeElement());
@@ -40,7 +40,7 @@ public class MainPageTest extends BaseTest {
     @Story("Авторизация и запись cookies в файл, чтение cookies из файла при повторном прогоне")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test(priority = 1)
-    public void loginAndWriteCookiesOrReadCookiesForLogin() {
+    public void loginAndWriteCookiesOrReadCookiesForLoginTest() {
         if (new File(getProp("cookies_file")).exists()) {
             readCookiesFromFile(driver);
             driver.navigate().refresh();

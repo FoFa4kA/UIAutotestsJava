@@ -3,10 +3,10 @@
 <suite name="UIAutotestJava">
     <test name="Test way2automation and sql-ex pages">
         <classes>
-            <class name="tests.way2automation.HomePageMainElementsTest"/>
-            <class name="tests.way2automation.LoginPageTest"/>
-            <class name="tests.way2automation.AuthorizationTest"/>
-            <class name="tests.sqlex.MainPageTest"/>
+            <class name="tests.way2automation.HomePageMainElementsTests"/>
+            <class name="tests.way2automation.LoginPageTests"/>
+            <class name="tests.way2automation.AuthorizationTests"/>
+            <class name="tests.sqlex.MainPageTests"/>
         </classes>
     </test>
 </suite>

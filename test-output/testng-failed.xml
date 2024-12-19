@@ -3,15 +3,15 @@
 <suite thread-count="4" parallel="classes" name="Failed suite [UIAutotestJava]" guice-stage="DEVELOPMENT">
   <test thread-count="4" parallel="classes" name="Test way2automation and sql-ex pages(failed)">
     <classes>
-      <class name="tests.way2automation.HomePageMainElementsTest">
+      <class name="tests.way2automation.HomePageMainElementsTests">
         <methods>
           <include name="beforeSuite"/>
           <include name="close"/>
           <include name="setUp"/>
           <include name="repeatGoToPageViaNavMenu"/>
         </methods>
-      </class> <!-- tests.way2automation.HomePageMainElementsTest -->
-      <class name="tests.way2automation.AuthorizationTest">
+      </class> <!-- tests.way2automation.HomePageMainElementsTests -->
+      <class name="tests.way2automation.AuthorizationTests">
         <methods>
           <include name="beforeSuite"/>
           <include name="close"/>
@@ -19,7 +19,7 @@
           <include name="checkLoginWithInvalidData" invocation-numbers="0"/>
           <include name="setUp"/>
         </methods>
-      </class> <!-- tests.way2automation.AuthorizationTest -->
+      </class> <!-- tests.way2automation.AuthorizationTests -->
     </classes>
   </test> <!-- Test way2automation and sql-ex pages(failed) -->
 </suite> <!-- Failed suite [UIAutotestJava] -->

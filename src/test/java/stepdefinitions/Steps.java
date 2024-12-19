@@ -53,11 +53,6 @@ public class Steps {
         loginPage.successLoginMessageAppears();
     }
 
-    @Given("User enters invalid username password and username description")
-    public void userEntersInvalidUsernamePasswordAndUsernameDescription() {
-        loginPage.enterCredentialsIntoFields("invalid_data", "invalid_data", "user_desc");
-    }
-
     @Then("Incorrect credentials message appears")
     public void incorrectCredentialsMessageAppears() {
         loginPage.incorrectCredentialsMessageAppears();
@@ -66,6 +61,16 @@ public class Steps {
     @Given("User enters invalid {string} {string} and username description")
     public void userEntersInvalidUsernamePasswordAndUsernameDescription(String username, String password) {
         loginPage.enterCredentialsIntoFields(username, password, "user_desc");
+    }
+
+    @When("User click logout button")
+    public void userClickLogoutButton() {
+        loginPage.waitElementToBeVisible(loginPage.getLogoutButton()).click();
+    }
+
+    @Then("Login page opens")
+    public void loginPageOpens() {
+        loginPage.waitElementToBeVisible(loginPage.getDisabledLoginButton());
     }
 
     @After

@@ -13,7 +13,7 @@ import tests.base.BaseTest;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Страница авторизации")
-public class LoginPageTest extends BaseTest {
+public class LoginPageTests extends BaseTest {
     protected LoginPage loginPage = new LoginPage(driver, actions);
 
     @BeforeTest
@@ -25,14 +25,14 @@ public class LoginPageTest extends BaseTest {
     @Story(value = "Поля ввода и кнопка 'Login'")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
-    public void checkInputsAndLoginButton() {
+    public void checkInputsAndLoginButtonTest() {
         loginPage.checkInputsAndLoginButtonDisabled();
     }
 
     @Story(value = "Успешная авторизация")
     @Severity(value = SeverityLevel.BLOCKER)
     @Test
-    public void checkSuccessLogin() {
+    public void checkSuccessLoginTest() {
         loginPage.enterCredentialsIntoFields("username", "password", "user_desc")
                 .clickLoginButton()
                 .successLoginMessageAppears();
@@ -41,7 +41,7 @@ public class LoginPageTest extends BaseTest {
     @Story(value = "Авторизация с невалидными данными")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
-    public void checkLoginWithInvalidCredentials() {
+    public void checkLoginWithInvalidCredentialsTest() {
         loginPage.enterCredentialsIntoFields("invalid_data", "invalid_data", "user_desc")
                 .clickLoginButton()
                 .incorrectCredentialsMessageAppears();
@@ -50,7 +50,7 @@ public class LoginPageTest extends BaseTest {
     @Story(value = "Выход из аккаунта")
     @Severity(value = SeverityLevel.CRITICAL)
     @Test
-    public void checkLogout() {
+    public void checkLogoutTest() {
         loginPage.enterCredentialsIntoFields("username", "password", "user_desc")
                 .clickLoginButton()
                 .successLoginMessageAppears()

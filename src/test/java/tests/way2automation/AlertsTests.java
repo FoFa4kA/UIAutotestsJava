@@ -13,7 +13,7 @@ import static org.testng.AssertJUnit.assertEquals;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Действия с алертами")
-public class AlertsTest extends BaseTest {
+public class AlertsTests extends BaseTest {
     protected AlertsPage alertsPage = new AlertsPage(driver, actions);
 
     @BeforeTest
@@ -24,7 +24,7 @@ public class AlertsTest extends BaseTest {
     @Story(value = "Вызов алерта с вводом текста и подтверждением")
     @Severity(SeverityLevel.CRITICAL)
     @Test
-    public void testAlertWithInput() {
+    public void alertWithInputTest() {
         alertsPage.invokePromptAlert()
                 .inputAndAcceptPromptAlert("Vladimir");
         assertEquals("Hello Vladimir! How are you today?", alertsPage.getGreetingText().getText());

@@ -11,7 +11,7 @@ import java.time.Duration;
 
 import static util.PropertiesUtil.getProp;
 
-public class BasePage {
+public abstract class BasePage {
     protected WebDriver driver;
     protected Actions actions;
 

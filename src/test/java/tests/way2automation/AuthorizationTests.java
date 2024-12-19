@@ -12,7 +12,7 @@ import util.LoginDataProviders;
 import static util.PropertiesUtil.getProp;
 
 @Feature(value = "Авторизация")
-public class AuthorizationTest extends BaseTest {
+public class AuthorizationTests extends BaseTest {
     protected LoginPage loginPage = new LoginPage(driver, actions);
 
     @BeforeTest
@@ -22,7 +22,7 @@ public class AuthorizationTest extends BaseTest {
 
     @Story(value = "Попытка авторизации с невалидными данными")
     @Test(priority = 1, dataProvider = "Invalid data for login", dataProviderClass = LoginDataProviders.class)
-    public void checkLoginWithInvalidData(String username, String password, String description) {
+    public void checkLoginWithInvalidDataTest(String username, String password, String description) {
         loginPage.enterCredentialsIntoFields(username, password, description)
                 .clickLoginButton()
                 .incorrectCredentialsMessageAppears();
@@ -30,7 +30,7 @@ public class AuthorizationTest extends BaseTest {
 
     @Story(value = "Авторизация с валидными данными")
     @Test(dataProvider = "Valid data for login", dataProviderClass = LoginDataProviders.class)
-    public void checkLoginWithValidData(String username, String password, String description) {
+    public void checkLoginWithValidDataTest(String username, String password, String description) {
         loginPage.enterCredentialsIntoFields(username, password, description)
                 .clickLoginButton()
                 .successLoginMessageAppears();
